@@ -48,10 +48,16 @@ body {
     outline: none;
 }
 
+.line {
+    height: 1px;
+    width: 99%;
+    background-color: black;
+}
+
 .showcase-form {
     position: relative;
     top: 10px;
-    height: 690px;
+    height: 650px;
     width: 380px;
     padding: 20px;
     justify-self: flex-end;
