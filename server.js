@@ -13,7 +13,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.set('strictQuery', false);
-mongoose.connect(process.env.MONGO_URI);
+const connectDB = async() => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 
 
 const NoteSchemer = {
@@ -60,6 +68,8 @@ app.post("/", function(req, res) {
     res.redirect("/");
 })
 
-app.listen(PORT, () => {
-    console.log("listening for requests");
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
 })
