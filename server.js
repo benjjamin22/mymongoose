@@ -64,7 +64,7 @@ app.post("/", function(req, res) {
         Phoneno2: req.body.Phoneno2
     })
 
-    newNote.save('data submited:\n' + JSON.stringify(req.body));
+    newNote.save();
     res.redirect("/");
 })
 
