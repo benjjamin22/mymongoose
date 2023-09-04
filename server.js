@@ -23,7 +23,6 @@ const connectDB = async() => {
     }
 }
 
-
 const NoteSchemer = {
     Name: String,
     Mname: String,
