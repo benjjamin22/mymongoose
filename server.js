@@ -68,7 +68,7 @@ app.post("/", function(req, res) {
     })
 
     newNote.save();
-    res.redirect("/");
+    res.send('data received, COPY THIS TO THE BACK OF YOUR PASSPORT:\n' + JSON.stringify(req.body.Name, req.body.Phoneno1));
 })
 
 connectDB().then(() => {
