@@ -24,20 +24,20 @@ const connectDB = async() => {
 }
 
 const NoteSchemer = {
-    Name: String,
-    Mname: String,
-    Surname: String,
-    School: String,
-    Dept: String,
-    RegNo: String,
-    Status: String,
-    bloodgroup: String,
-    YearofAdmin: String,
-    Sex: String,
-    LocalGovernment: String,
-    State: String,
-    Phoneno1: String,
-    Phoneno2: String
+    Name: { type: String, uppercase: true },
+    Mname: { type: String, uppercase: true },
+    Surname: { type: String, uppercase: true },
+    School: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    RegNo: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    bloodgroup: { type: String, uppercase: true },
+    YearofAdmin: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    LocalGovernment: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    Phoneno1: { type: String, uppercase: true },
+    Phoneno2: { type: String, uppercase: true }
 }
 
 const Note = mongoose.model("Note", NoteSchemer);
