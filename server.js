@@ -4,6 +4,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+
 
 
 const app = express()
@@ -24,6 +26,7 @@ const connectDB = async() => {
 }
 
 const NoteSchemer = {
+    id: { type: String, default: () => uuidv4(), required: true },
     Name: { type: String, uppercase: true },
     Mname: { type: String, uppercase: true },
     Surname: { type: String, uppercase: true },
@@ -49,9 +52,9 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", function(req, res) {
-    let newNote = new Note({
+app.post("/", async function(req, res) {
 
+    let newNote = new Note({
         Name: req.body.Name,
         Mname: req.body.Mname,
         Surname: req.body.Surname,
@@ -68,7 +71,6 @@ app.post("/", function(req, res) {
         Phoneno1: req.body.Phoneno1,
         Phoneno2: req.body.Phoneno2
     })
-
     newNote.save();
     res.redirect("/");
 })
