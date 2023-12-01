@@ -69,7 +69,8 @@ app.post("/", function(req, res) {
         LocalGovernment: req.body.LocalGovernment,
         State: req.body.State,
         Phoneno1: req.body.Phoneno1,
-        Phoneno2: req.body.Phoneno2
+        Phoneno2: req.body.Phoneno2,
+        Picturepath: req.body.Picturepath
 
     })
 
