@@ -70,6 +70,7 @@ app.post("/", async function(req, res) {
         State: req.body.State,
         Phoneno1: req.body.Phoneno1,
         Phoneno2: req.body.Phoneno2
+
     })
     const detailexist = await Note.findOne({ Phoneno1: req.body.Phoneno1 });
     if (detailexist) {
