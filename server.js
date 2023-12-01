@@ -4,6 +4,8 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const { v4: uuidv4 } = require('uuid');
+
 
 
 const app = express()
@@ -24,22 +26,24 @@ const connectDB = async() => {
 }
 
 const NoteSchemer = {
-    Name: String,
-    Mname: String,
-    Surname: String,
-    School: String,
-    Dept: String,
-    RegNo: String,
-    Status: String,
-    bloodgroup: String,
-    YearofAdmin: String,
-    Sex: String,
-    LocalGovernment: String,
-    State: String,
-    Phoneno1: String,
-    Phoneno2: String
+    id: { type: String, default: () => uuidv4(), required: true },
+    Name: { type: String, uppercase: true },
+    Mname: { type: String, uppercase: true },
+    Surname: { type: String, uppercase: true },
+    School: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    RegNo: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    bloodgroup: { type: String, uppercase: true },
+    YearofAdmin: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    LocalGovernment: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    Phoneno1: { type: String, uppercase: true, unique: true, required: true },
+    Phoneno2: { type: String, uppercase: true },
+    Picturepath: { type: String, uppercase: true }
 }
-
 const Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -49,8 +53,8 @@ app.get(["/", "/index.html"], (req, res) => {
 })
 
 app.post("/", function(req, res) {
-    let newNote = new Note({
 
+    let newNote = new Note({
         Name: req.body.Name,
         Mname: req.body.Mname,
         Surname: req.body.Surname,
@@ -60,11 +64,13 @@ app.post("/", function(req, res) {
         Status: req.body.Status,
         bloodgroup: req.body.bloodgroup,
         YearofAdmin: req.body.YearofAdmin,
+        Validity: req.body.Validity,
         Sex: req.body.Sex,
         LocalGovernment: req.body.LocalGovernment,
         State: req.body.State,
         Phoneno1: req.body.Phoneno1,
         Phoneno2: req.body.Phoneno2
+
     })
 
     newNote.save();
