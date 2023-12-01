@@ -52,7 +52,7 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", async function(req, res) {
+app.post("/", function(req, res) {
 
     let newNote = new Note({
         Name: req.body.Name,
@@ -72,10 +72,6 @@ app.post("/", async function(req, res) {
         Phoneno2: req.body.Phoneno2
 
     })
-    const detailexist = await Note.findOne({ Phoneno1: req.body.Phoneno1 });
-    if (detailexist) {
-        res.process(1)
-    }
 
     newNote.save();
     res.redirect("/");
