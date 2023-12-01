@@ -40,10 +40,10 @@ const NoteSchemer = {
     Sex: { type: String, uppercase: true },
     LocalGovernment: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
-    Phoneno1: { type: String, uppercase: true },
-    Phoneno2: { type: String, uppercase: true }
+    Phoneno1: { type: String, uppercase: true, unique: true, required: true },
+    Phoneno2: { type: String, uppercase: true },
+    Picturepath: { type: String, uppercase: true }
 }
-
 const Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -71,6 +71,11 @@ app.post("/", async function(req, res) {
         Phoneno1: req.body.Phoneno1,
         Phoneno2: req.body.Phoneno2
     })
+    const detailexist = await Note.findOne({ Phoneno1: req.body.Phoneno1 });
+    if (detailexist) {
+        res.process(1)
+    }
+
     newNote.save();
     res.redirect("/");
 })
