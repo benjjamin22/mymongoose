@@ -27,9 +27,11 @@ const connectDB = async() => {
 
 const NoteSchemer = {
     id: { type: String, default: () => uuidv4(), required: true },
-    Name: { type: String, uppercase: true },
-    Mname: { type: String, uppercase: true },
-    Surname: { type: String, uppercase: true },
+    Aname: [{
+        Name: { type: String, uppercase: true },
+        Mname: { type: String, uppercase: true },
+        Surname: { type: String, uppercase: true }
+    }],
     School: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
@@ -52,12 +54,14 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", function(req, res) {
+app.post("/", async(req, res) => {
 
     let newNote = new Note({
-        Name: req.body.Name,
-        Mname: req.body.Mname,
-        Surname: req.body.Surname,
+        Aname: [{
+            Name: AnameArray,
+            Mname: AnameArray,
+            Surname: AnameArray
+        }],
         School: req.body.School,
         Dept: req.body.Dept,
         RegNo: req.body.RegNo,
@@ -71,10 +75,9 @@ app.post("/", function(req, res) {
         Phoneno1: req.body.Phoneno1,
         Phoneno2: req.body.Phoneno2,
         Picturepath: req.body.Picturepath
+    });
 
-    })
-
-    newNote.save();
+    await newNote.save();
     res.redirect("/");
 })
 
