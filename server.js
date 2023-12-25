@@ -58,9 +58,9 @@ app.post("/", async(req, res) => {
 
     let newNote = new Note({
         Aname: [{
-            Name: AnameArray,
-            Mname: AnameArray,
-            Surname: AnameArray
+            Name: req.body.Name,
+            Mname: req.body.Mname,
+            Surname: req.body.Surname
         }],
         School: req.body.School,
         Dept: req.body.Dept,
