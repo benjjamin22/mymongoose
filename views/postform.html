@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card Form</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>ID Card Form</h1>
+        <form action="/newpost" method="POST">
+            <div class="form-control">
+                <input type="text" name="FirstName" required>
+                <label>First Name</label>
+                <!-- <label>
+            <span style="transition-delay: 0ms">E</span>
+              <span style="transition-delay: 50ms">m</span>
+              <span style="transition-delay: 100ms">a</span>
+              <span style="transition-delay: 150ms">i</span>
+              <span style="transition-delay: 200ms">l</span>
+        </label> -->
+            </div>
+
+            <div class="form-control">
+                <input type="text" name="MiddleName" required>
+                <label>Middle Name</label>
+            </div>
+            <div class="form-control">
+                <input type="text" name="Surname" required>
+                <label>Surname</label>
+            </div>
+            <div class="form-control">
+                <input type="text" name="School" required>
+                <label>School</label>
+            </div>
+            <div class="form-control">
+                <input type="text" name="Dept" required>
+                <label>Dept</label>
+            </div>
+            <div class="form-control">
+                <input type="text" name="State" required>
+                <label>State</label>
+            </div>
+            <div class="form-control">
+                <input type="text" name="LocalGovt" required>
+                <label>Local Govt.</label>
+            </div>
+            <div class="Card-line">
+                <div class="Card">
+                    <div class="form-control">
+                        <input type="text" name="RegNo" required>
+                        <label>Reg No.</label>
+                    </div>
+                </div>
+                <div class="Card">
+                    <div class="form-control">
+                        <input type="text" name="BloodGroup" required>
+                        <label>Blood Group</label>
+                    </div>
+                </div>
+                <div class="Card">
+                    <div class="form-control">
+                        <input type="text" name="Sex" required>
+                        <label>Sex</label>
+                    </div>
+                </div>
+            </div>
+            <div class="Card-line">
+                <div class="Card">
+                    <div class="form-control">
+                        <input type="text" name="PhoneNo" required>
+                        <label>Phone No</label>
+                    </div>
+                </div>
+                <div class="Card">
+                    <div class="form-control">
+                        <input type="text" name="EmergencyNo" required>
+                        <label>Emergency No.</label>
+                    </div>
+                </div>
+            </div>
+            <button class="btn" type="submit">Login</button>
+        </form>
+    </div>
+    <script src="/public/script.js"></script>
+</body>
+
+</html>
+
+
+</html>
