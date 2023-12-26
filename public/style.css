@@ -1,116 +1,134 @@
-@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
-* {
-    box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css?family=Roboto+condensed');
+:root {
+    --primary-color: #047aed;
+    --secondary-color: #1c3fa8;
+    --dark-color: #002240;
+    --light-color: #f4f4f4;
+    --success-color: #5cb85c;
+    --error-color: #d9534f;
 }
 
-body {
-    background-color: steelblue;
-    color: #fff;
-    font-family: 'Muli', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    overflow: hidden;
+* {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
 }
 
-.container {
-    background-color: rgba(0, 0, 0, 0.4);
-    padding: 20px 40px;
-    border-radius: 5px;
-    margin-right: .4rem;
-    margin-top: 0rem;
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0;
 }
 
-.container h1 {
-    text-align: center;
+.card {
+    background-color: #fff;
+    color: #333;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 0px;
     margin: 0px;
-    margin-bottom: -1rem;
 }
 
-.container a {
-    text-decoration: none;
-    color: lightblue;
+.showcase-form h2 {
+    margin: 0px;
 }
 
-.btn {
-    cursor: pointer;
-    display: inline-block;
-    width: 100%;
-    background: lightblue;
-    padding: 15px;
-    font-family: inherit;
-    font-size: 16px;
-    border: 0;
-    border-radius: 5px;
+.showcase-form P {
+    margin: 0px;
 }
 
-.btn:focus {
-    outline: 0;
+.showcase-form .form-control {
+    margin: 20px 0;
 }
 
-.btn:active {
-    transform: scale(0.98);
+.showcase-form input:focus {
+    outline: none;
 }
 
-.text {
-    margin-top: 30px;
+.line {
+    height: 1px;
+    width: 99%;
+    background-color: black;
+}
+
+.showcase-form {
+    position: relative;
+    top: 10px;
+    height: 760px;
+    width: 380px;
+    padding: 20px;
+    justify-self: flex-end;
+    animation: slideInFromRight 1s ease-in;
+    background-color: transparent;
+}
+
+.showcase-form .form-control {
+    margin: 25px 0;
+    margin-bottom: -3%;
+    background-color: transparent;
 }
 
 .form-control {
-    position: relative;
-    margin: 10px 0 10px;
-    width: 300px;
+    margin-bottom: -15%;
 }
 
-.form-control input {
-    background-color: transparent;
+.showcase-form input[type='text'],
+.showcase-form input[type='email'] {
     border: 0;
-    border-bottom: 2px #fff solid;
-    display: block;
     width: 100%;
-    padding: 5px 0;
+    padding: 3px;
     font-size: 16px;
-    color: #fff;
-    padding-top: 25px;
-    margin-bottom: 0px;
+    background-color: transparent;
 }
 
-.form-control input:focus,
-.form-control input:valid {
-    outline: 0;
-    border-bottom-color: lightblue;
+.showcase-form label {
+    border: 0;
+    border-bottom: 1px solid #b4becb;
+    width: 100%;
+    padding: 3px;
+    font-size: 16px;
+    background-color: transparent;
 }
 
-.form-control label {
+.container {
+    display: flex;
+    margin-top: -7%;
+}
+
+.showcase-form input:focus {
+    outline: none;
+}
+
+.showcase::before,
+.showcase::after {
+    content: '';
     position: absolute;
-    top: 18px;
+    height: 100px;
+    bottom: -70px;
+    right: 0;
     left: 0;
-    pointer-events: none;
+    background: #fff;
 }
 
-.form-control label span {
+.btn {
     display: inline-block;
-    font-size: 15px;
-    min-width: 5px;
-    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    padding: 10px 30px;
+    cursor: pointer;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
 }
 
-.Card .form-control {
-    width: 90%;
-    display: flex;
+.btn-outline {
+    background-color: transparent;
+    border: 1px #fff solid;
 }
 
-.Card-line {
-    display: flex;
-    margin: 0px;
-    width: 20rem;
-}
-
-.form-control input:focus+label span,
-.form-control input:valid+label span {
-    color: lightblue;
-    transform: translateY(-15px);
+.btn:hover {
+    transform: scale(0.98);
 }
