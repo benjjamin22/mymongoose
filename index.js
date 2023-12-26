@@ -90,14 +90,7 @@ app.post("/newpost", (req, res) => {
     };
     db.push(newPost);
     jsonfile.writeFile("./db/db.json", db, (err) => {
-        if (err) {
-            console.error(err);
-            res.json({ message: "Error writing to database" });
-        } else {
-            res.json({
-                message: `Post added successfully! Your Post Id is ${newPost.id}`,
-            });
-        }
+        res.redirect("/");
     });
 });
 
