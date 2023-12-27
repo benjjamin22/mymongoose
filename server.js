@@ -1,39 +1,22 @@
 const express = require('express');
-const path = require('path');
 const fs = require('fs');
 const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
-const logger = require('./middleware/logger');
-const filedata = ('database.json');
 const { v4: uuidv4 } = require('uuid')
 
 const app = express();
 
-// Init middleware
-// app.use(logger);
 
-// Handlebars Middleware
-app.engine('handlebars', exphbs.engine());
-app.set('view engine', 'handlebars');
 
 // Body Parser Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
-// Homepage Route
-app.get('/', (req, res) =>
-
-    res.render('index', {
-        title: 'Member App',
-        filedata
-    })
-);
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(('public')));
 
 // Members API Routes
-app.post('/', (req, res) => {
+app.post('/ub', (req, res) => {
     const newMember = {
         id: uuidv4(),
         Aname: [{
