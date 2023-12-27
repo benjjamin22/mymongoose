@@ -1,0 +1,49 @@
+[
+  {
+    "Name": "John Doe",
+    "Mname": "John Doe",
+    "Surname": "john@gmail.com",
+    "School": "john@gmail.com",
+    "Dept": "john@gmail.com",
+    "State": "john@gmail.com",
+    "LocalGovt": "john@gmail.com",
+    "RegNo": "john@gmail.com",
+    "Bloodgroup": "john@gmail.com",
+    "Sex": "john@gmail.com",
+    "PhoneNo": "john@gmail.com",
+    "EmergencyNo": "john@gmail.com"
+  },
+  {
+    "Name": "John Doe",
+    "Mname": "John Doe",
+    "Surname": "john@gmail.com",
+    "School": "john@gmail.com",
+    "Dept": "john@gmail.com",
+    "State": "john@gmail.com",
+    "LocalGovt": "john@gmail.com",
+    "RegNo": "john@gmail.com",
+    "Bloodgroup": "john@gmail.com",
+    "Sex": "john@gmail.com",
+    "PhoneNo": "john@gmail.com",
+    "EmergencyNo": "john@gmail.com"
+  },
+  {
+    "id": "fdcdfad8-1c41-4be0-a36e-4e5a0c446d5f",
+    "Aname": [
+      {
+        "Name": "BENJAMIN",
+        "Mname": "ORITEJIMI",
+        "Surname": "KANAYO"
+      }
+    ],
+    "School": "GGSGS",
+    "Dept": "mnbjkb",
+    "State": "KLFGLDF",
+    "LocalGovt": "WARRI",
+    "RegNo": "23/45678",
+    "Bloodgroup": "o",
+    "Sex": "female",
+    "PhoneNo": "08037722780",
+    "EmergencyNo": "8037722780"
+  }
+]
