@@ -1,127 +1,116 @@
-*{
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+* {
     box-sizing: border-box;
-    background-color: black;
 }
-.container{
-    width: 60vw;
-    height: auto;
-    margin: 150px auto;
-    padding: 30px;
-    background-color: rgb(34, 33, 33);
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgb(35, 35, 35);
-}
-.container h3{
-    color: white;
-    background-color: transparent;
-    text-align: center;
-    font-size: 30px;
-    font-family: 'Montserrat';
-    padding: 20px 0px;
-}
-.container p{
-    color: white;
-    text-align: center;
-    font-family: 'Montserrat';
-    background-color: transparent;
-    font-size: 15px;
-}
-.btn-section{
+
+body {
+    background-color: steelblue;
+    color: #fff;
+    font-family: 'Muli', sans-serif;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: transparent;
-    margin: 30px 0px;
-}
-.btn-section a{
-    background-color: transparent;
-}
-.btn-section button{
-    margin: 10px 5px;
-    padding: 5px 10px;
-    background-color: white;
-    color: black;
-    font-family: 'Montserrat';
-    font-size: 20px;
-    font-weight: 500;
-    transition: 0.5s;
-}
-.btn-section button:hover{
-    color: rgb(185, 255, 80);
-    background-color: black;
-    border: 2px solid rgb(185, 255, 80);
-    border-radius: 10px;
-    transform: translateY(-3px);
-    box-shadow: 0px 4px 2px 0px rgb(185, 255, 80);
-}
-.follow{
-    margin: 10px 5px;
-    padding: 10px 50px;
-    display: flex;
     justify-content: center;
-    color: rgb(185, 255, 80);
-    background-color: black;
-    border: 2px solid rgb(185, 255, 80);
-    border-radius: 10px;
-    font-family: 'Montserrat';
-    font-size: 20px;
-    font-weight: 500;
-    box-shadow: 0px 4px 2px 0px rgb(185, 255, 80);
-    transition: 0.5s;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
 }
-.follow:hover{
-    color: black;
-    background-color: rgb(185, 255, 80);
+
+.container {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px 40px;
+    border-radius: 5px;
+    margin-right: 1rem;
+    margin-top: 0rem;
 }
-form{
-    width: 60%;
+
+.container h1 {
+    text-align: center;
+    margin: 0px;
+    margin-bottom: -1rem;
+}
+
+.container a {
+    text-decoration: none;
+    color: lightblue;
+}
+
+.btn {
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    background: lightblue;
+    padding: 15px;
+    font-family: inherit;
+    font-size: 16px;
+    border: 0;
+    border-radius: 5px;
+}
+
+.btn:focus {
+    outline: 0;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.text {
+    margin-top: 30px;
+}
+
+.form-control {
+    position: relative;
+    margin: 10px 0 10px;
+    width: 300px;
+}
+
+.form-control input {
     background-color: transparent;
-    margin: 10px auto;
-    padding: 10px;
-}
-form label{
+    border: 0;
+    border-bottom: 2px #fff solid;
     display: block;
-    color: white;
-    font-size: 14px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    background-color: transparent;
-    padding: 5px;
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    color: #fff;
+    padding-top: 25px;
+    margin-bottom: 0px;
 }
-form input {
+
+.form-control input:focus,
+.form-control input:valid {
+    outline: 0;
+    border-bottom-color: lightblue;
+}
+
+.form-control label {
+    position: absolute;
+    top: 18px;
+    left: 0;
+    pointer-events: none;
+}
+
+.form-control label span {
+    display: inline-block;
+    font-size: 15px;
+    min-width: 5px;
+    transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.Card .form-control {
     width: 90%;
-    padding: 10px;
-    outline: none;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    display: flex;
 }
-form input:focus{
-    border: 1px solid rgb(185, 255, 80);
+
+.Card-line {
+    display: flex;
+    margin: 0px;
+    width: 20rem;
 }
-form textarea{
-    width: 90%;
-    padding: 10px;
-    outline: none;
-    border: 1px solid white;
-    border-radius: 5px;
-    color: white;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-form textarea:focus{
-    border: 1px solid rgb(185, 255, 80);
-}
-#parameter{
-  width: 60%;
-  margin-left: 160px;
-  margin-top: 20px;
-  padding: 10px;
-  outline: none;
-  border: 1px solid white;
-  border-radius: 5px;
-  color: white;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+.form-control input:focus+label span,
+.form-control input:valid+label span {
+    color: lightblue;
+    transform: translateY(-15px);
 }
