@@ -115,5 +115,43 @@
     "Sex": "FEMALE",
     "PhoneNo": "08037722780",
     "EmergencyNo": "8037722780"
+  },
+  {
+    "id": "e36ed030-e306-4857-b4dd-ad0dc7864112",
+    "Aname": [
+      {
+        "Name": "BENJAMIN",
+        "Mname": "ORITEJIMI",
+        "Surname": "KANAYO"
+      }
+    ],
+    "School": "IMO STATE UNIVERSITY",
+    "Dept": "ACCOUNTANCY",
+    "State": "KLFGLDF",
+    "LocalGovt": "WARRI",
+    "RegNo": "freger",
+    "Bloodgroup": "o",
+    "Sex": "dfbgdf",
+    "PhoneNo": "08037722780",
+    "EmergencyNo": "8037722780"
+  },
+  {
+    "id": "c40f339c-3952-4a6e-8630-90d17e248e87",
+    "Aname": [
+      {
+        "Name": "BENJAMINOIUY",
+        "Mname": "ORITEJIMI",
+        "Surname": "KANAYO"
+      }
+    ],
+    "School": "GGSGS",
+    "Dept": "ACCOUNTANCY",
+    "State": "KLFGLDF",
+    "LocalGovt": "WARRI",
+    "RegNo": "23/45678",
+    "Bloodgroup": "o",
+    "Sex": "male",
+    "PhoneNo": "08037722780",
+    "EmergencyNo": "8037722780"
   }
 ]
