@@ -45,5 +45,24 @@
     "Sex": "female",
     "PhoneNo": "08037722780",
     "EmergencyNo": "8037722780"
+  },
+  {
+    "id": "872c60f4-987b-4724-9d6e-3e5fb4f83a05",
+    "Aname": [
+      {
+        "Name": "BENJAMIN",
+        "Mname": "ORITEJIMI",
+        "Surname": "KANAYO"
+      }
+    ],
+    "School": "IMO STATE UNIVERSITY",
+    "Dept": "ACCOUNTANCY",
+    "State": "KLFGLDF",
+    "LocalGovt": "WARRI",
+    "RegNo": "23/45678",
+    "Bloodgroup": "o",
+    "Sex": "male",
+    "PhoneNo": "08037722780",
+    "EmergencyNo": "8037722780"
   }
 ]
