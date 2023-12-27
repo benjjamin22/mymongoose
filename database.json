@@ -153,5 +153,24 @@
     "Sex": "female",
     "PhoneNo": "08037722780",
     "EmergencyNo": "8037722780"
+  },
+  {
+    "id": "1482d711-ec1f-4f82-99f9-97f016e73a12",
+    "Aname": [
+      {
+        "Name": "BENJAMIN",
+        "Mname": "ORITEJIMI",
+        "Surname": "KANAYO"
+      }
+    ],
+    "School": "GGSGS",
+    "Dept": "mnbjkb",
+    "State": "KLFGLDF",
+    "LocalGovt": "WARRI",
+    "RegNo": "04P95",
+    "Bloodgroup": "o",
+    "Sex": "FEMALE",
+    "PhoneNo": "08037722780",
+    "EmergencyNo": "8037722780"
   }
 ]
