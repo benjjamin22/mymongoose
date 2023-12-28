@@ -71,9 +71,9 @@ app.post("/", async(req, res) => {
     });
 
     await newNote.save();
-    res.send(`<html><h1>${newNote.id}</h1></html>`)
-        //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-        //res.redirect("/");
+    //res.send(`<html><h1>${newNote.id}</h1></html>`)
+    //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
+    res.redirect("/");
 })
 
 connectDB().then(() => {
