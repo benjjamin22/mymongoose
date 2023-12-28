@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const path = require('path');
 const db = require('./database.json');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid')
@@ -40,7 +41,8 @@ app.post('/ub', (req, res) => {
     const filedata = fs.readFileSync('database.json', 'utf8');
     jsonData = JSON.parse(filedata);
     jsonData.push(newMember);
-    fs.writeFileSync('database.json', JSON.stringify(jsonData, null, 2), 'utf8');
+    const filePath = path.join('/tmp', 'database.json')
+    fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), 'utf8');
     res.json(newMember);
     //res.redirect('/');
 });
