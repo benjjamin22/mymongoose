@@ -1,26 +1,62 @@
+require('dotenv').config();
+
 const express = require('express');
-const fs = require('fs');
 const path = require('path');
-const db = require('./database.json');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const { v4: uuidv4 } = require('uuid')
-
-const app = express();
+const { v4: uuidv4 } = require('uuid');
 
 
 
-// Body Parser Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+const app = express()
+const PORT = process.env.PORT || 8000
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Set static folder
-app.use(express.static(('public')));
+mongoose.set('strictQuery', false);
+const connectDB = async() => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
 
-// Members API Routes
-app.post('/ub', (req, res) => {
-    const newMember = {
-        id: uuidv4(),
+const NoteSchemer = {
+    id: { type: String, default: () => uuidv4(), required: true },
+    Aname: [{
+        Name: { type: String, uppercase: true },
+        Mname: { type: String, uppercase: true },
+        Surname: { type: String, uppercase: true }
+    }],
+    School: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    RegNo: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    bloodgroup: { type: String, uppercase: true },
+    YearofAdmin: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    LocalGovernment: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    Phoneno1: { type: String, uppercase: true, unique: true, required: true },
+    Phoneno2: { type: String, uppercase: true },
+    Picturepath: { type: String, uppercase: true }
+}
+const Note = mongoose.model("Note", NoteSchemer);
+
+app.use('/public', express.static(__dirname + '/public'));
+
+app.get(["/", "/index.html"], (req, res) => {
+    res.sendFile(__dirname + "/index.html");
+})
+
+app.post("/", async(req, res) => {
+
+    let newNote = new Note({
         Aname: [{
             Name: req.body.Name,
             Mname: req.body.Mname,
@@ -28,30 +64,25 @@ app.post('/ub', (req, res) => {
         }],
         School: req.body.School,
         Dept: req.body.Dept,
-        State: req.body.State,
-        LocalGovt: req.body.LocalGovt,
         RegNo: req.body.RegNo,
-        Bloodgroup: req.body.Bloodgroup,
+        Status: req.body.Status,
+        bloodgroup: req.body.bloodgroup,
+        YearofAdmin: req.body.YearofAdmin,
+        Validity: req.body.Validity,
         Sex: req.body.Sex,
-        PhoneNo: req.body.PhoneNo,
-        EmergencyNo: req.body.EmergencyNo
-    };
-    let jsonData = [];
+        LocalGovernment: req.body.LocalGovernment,
+        State: req.body.State,
+        Phoneno1: req.body.Phoneno1,
+        Phoneno2: req.body.Phoneno2,
+        Picturepath: req.body.Picturepath
+    });
 
-    const filedata = fs.readFileSync('database.json', 'utf8');
-    jsonData = JSON.parse(filedata);
-    jsonData.push(newMember);
-    const filePath = path.join('/tmp', 'database.json')
-    fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2), 'utf8');
-    res.json(newMember);
-    //res.redirect('/');
-});
+    await newNote.save();
+    res.redirect("/");
+})
 
-app.get("/postsgg", (req, res) => {
-    res.json(db);
-});
-
-
-const PORT = process.env.PORT || 5000;
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
+})
