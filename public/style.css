@@ -27,7 +27,17 @@ body {
 .container h1 {
     text-align: center;
     margin: 0px;
+    margin-bottom: -1.5rem;
+}
+
+.text {
     margin-bottom: -1rem;
+}
+
+.container p {
+    text-align: center;
+    margin: 0px;
+    font-size: 13px;
 }
 
 .container a {
