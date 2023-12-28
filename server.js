@@ -34,17 +34,14 @@ const NoteSchemer = {
     }],
     School: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
-    RegNo: { type: String, uppercase: true },
-    Status: { type: String, uppercase: true },
-    bloodgroup: { type: String, uppercase: true },
-    YearofAdmin: { type: String, uppercase: true },
-    Validity: { type: String, uppercase: true },
-    Sex: { type: String, uppercase: true },
-    LocalGovernment: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
-    Phoneno1: { type: String, uppercase: true, unique: true, required: true },
-    Phoneno2: { type: String, uppercase: true },
-    Picturepath: { type: String, uppercase: true }
+    LocalGovt: { type: String, uppercase: true },
+    RegNo: { type: String, uppercase: true },
+    Bloodgroup: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    PhoneNo: { type: String, uppercase: true, unique: true, required: true },
+    EmergencyNo: { type: String, uppercase: true }
+
 }
 const Note = mongoose.model("Note", NoteSchemer);
 
@@ -64,17 +61,14 @@ app.post("/", async(req, res) => {
         }],
         School: req.body.School,
         Dept: req.body.Dept,
-        RegNo: req.body.RegNo,
-        Status: req.body.Status,
-        bloodgroup: req.body.bloodgroup,
-        YearofAdmin: req.body.YearofAdmin,
-        Validity: req.body.Validity,
-        Sex: req.body.Sex,
-        LocalGovernment: req.body.LocalGovernment,
         State: req.body.State,
-        Phoneno1: req.body.Phoneno1,
-        Phoneno2: req.body.Phoneno2,
-        Picturepath: req.body.Picturepath
+        LocalGovt: req.body.LocalGovt,
+        RegNo: req.body.RegNo,
+        Bloodgroup: req.body.Bloodgroup,
+        Sex: req.body.Sex,
+        PhoneNo: req.body.PhoneNo,
+        EmergencyNo: req.body.EmergencyNo,
+
     });
 
     await newNote.save();
@@ -85,4 +79,4 @@ connectDB().then(() => {
     app.listen(PORT, () => {
         console.log("listening for requests");
     })
-})
+});
