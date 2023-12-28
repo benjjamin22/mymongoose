@@ -11,6 +11,8 @@ const { v4: uuidv4 } = require('uuid');
 const app = express()
 const PORT = process.env.PORT || 8000
 
+//const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -40,7 +42,9 @@ const NoteSchemer = {
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
     PhoneNo: { type: String, uppercase: true, unique: true, required: true },
-    EmergencyNo: { type: String, uppercase: true }
+    EmergencyNo: { type: String, uppercase: true },
+    picturepath: { type: String, uppercase: true }
+
 
 }
 const Note = mongoose.model("Note", NoteSchemer);
@@ -50,7 +54,7 @@ app.use('/public', express.static(__dirname + '/public'));
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
-const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
+
 app.post("/", async(req, res) => {
     let newNote = new Note({
         Aname: [{
@@ -67,7 +71,8 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
-        uniq: uid(),
+        picturepath: '',
+
     });
 
     await newNote.save();
