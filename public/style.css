@@ -22,16 +22,17 @@ body {
     margin-right: .0rem;
     margin-top: 1rem;
     max-width: 80rem;
+    position: relative;
 }
 
 .container h1 {
     text-align: center;
     margin: 0px;
-    margin-bottom: -1.5rem;
+    margin-bottom: -2.3rem;
 }
 
 .text {
-    margin-bottom: -1rem;
+    margin-bottom: .5rem;
 }
 
 .container p {
@@ -55,6 +56,7 @@ body {
     font-size: 16px;
     border: 0;
     border-radius: 5px;
+    margin-top: .5rem;
 }
 
 .btn:focus {
@@ -72,7 +74,7 @@ body {
 .form-control {
     position: relative;
     margin: 10px 0 10px;
-    width: 300px;
+    width: 310px;
 }
 
 .form-control input {
@@ -85,7 +87,7 @@ body {
     font-size: 16px;
     color: #fff;
     padding-top: 25px;
-    margin-bottom: -.2rem;
+    margin-bottom: -.6rem;
 }
 
 .form-control input:focus,
@@ -109,7 +111,7 @@ body {
 }
 
 .Card .form-control {
-    width: 90%;
+    width: 93%;
     display: flex;
 }
 
