@@ -50,9 +50,8 @@ app.use('/public', express.static(__dirname + '/public'));
 app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
-
+const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
 app.post("/", async(req, res) => {
-
     let newNote = new Note({
         Aname: [{
             Name: req.body.Name,
@@ -68,6 +67,7 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
+        uniq: uid(),
     });
 
     await newNote.save();
