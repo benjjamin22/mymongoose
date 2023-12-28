@@ -68,11 +68,12 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
-
     });
 
     await newNote.save();
-    res.redirect("/");
+    res.send(`<html><h1>${newNote.id}</h1></html>`)
+        //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
+        //res.redirect("/");
 })
 
 connectDB().then(() => {
