@@ -44,7 +44,7 @@ const NoteSchemer = new Schema({
     Sex: { type: String, uppercase: true },
     PhoneNo: { type: String, uppercase: true, unique: true, required: true },
     EmergencyNo: { type: String, uppercase: true },
-    picturepath: { type: String, uppercase: true }
+    picturepath: { type: String, uppercase: true, }
 
 
 });
@@ -85,15 +85,15 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
-        picturepath: '.jpg',
+        picturepath: '',
 
     });
 
 
     await newNote.save();
-    //res.send(`<html><h1>${newNote.id}</h1></html>`)
-    //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-    res.redirect("/");
+    res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:5rem;">copy this to the back of your passport before submiting</h5><h1 style="font-size:20rem; margin:20rem;text-align: center;">${newNote.picturepath}</h1></body></html>`)
+        //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
+        //res.redirect("/");
 })
 
 connectDB().then(() => {
