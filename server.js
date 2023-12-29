@@ -91,7 +91,7 @@ app.post("/", async(req, res) => {
 
 
     await newNote.save();
-    res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:5rem;">copy this to the back of your passport before submiting</h5><h1 style="font-size:20rem; margin:20rem;text-align: center;">${newNote.picturepath}</h1></body></html>`)
+    res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:5rem;">copy the Number to the back of your passport before submiting</h5><h1 style="font-size:20rem; margin:20rem;text-align: center;">${newNote.picturepath}</h1></body></html>`)
         //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
         //res.redirect("/");
 })
