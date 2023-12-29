@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 
@@ -27,7 +28,7 @@ const connectDB = async() => {
     }
 }
 
-const NoteSchemer = {
+const NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: [{
         Name: { type: String, uppercase: true },
@@ -46,7 +47,20 @@ const NoteSchemer = {
     picturepath: { type: String, uppercase: true }
 
 
-}
+});
+NoteSchemer.pre("save", function(next) {
+    var docs = this;
+    mongoose.model('Note', NoteSchemer).countDocuments()
+        .then(function(counter) {
+            docs.picturepath = counter + 1;
+            next();
+        });
+
+
+
+});
+
+
 const Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -71,9 +85,10 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
-        picturepath: '',
+        picturepath: '.jpg',
 
     });
+
 
     await newNote.save();
     //res.send(`<html><h1>${newNote.id}</h1></html>`)
