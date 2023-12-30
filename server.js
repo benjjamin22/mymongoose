@@ -44,8 +44,8 @@ const NoteSchemer = new Schema({
     Sex: { type: String, uppercase: true },
     PhoneNo: { type: String, uppercase: true, unique: true, required: true },
     EmergencyNo: { type: String, uppercase: true },
-    picturepath: { type: String, uppercase: true, }
-
+    picturepath: { type: String, uppercase: true },
+    pi: { type: String, uppercase: true }
 
 });
 NoteSchemer.pre("save", function(next) {
@@ -55,11 +55,15 @@ NoteSchemer.pre("save", function(next) {
             docs.picturepath = counter + 1;
             next();
         });
-
-
-
 });
-
+NoteSchemer.pre("save", function(next) {
+    var docs = this;
+    mongoose.model('Note', NoteSchemer).countDocuments()
+        .then(function(counter) {
+            docs.pi = counter + 1;
+            next();
+        });
+});
 
 const Note = mongoose.model("Note", NoteSchemer);
 
@@ -91,7 +95,9 @@ app.post("/", async(req, res) => {
 
 
     await newNote.save();
-    res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:4rem;">copy this Number to the back of your passport before submiting</h5><h1 style="font-size:20rem; margin:20rem;text-align: center;">${newNote.picturepath}</h1></body></html>`)
+    res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:4rem;">copy this to the back of your passport before submiting
+    </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align: center;">${newNote.picturepath}</h1>
+    <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1></body></html>`)
         //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
         //res.redirect("/");
 })
