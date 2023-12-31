@@ -96,10 +96,10 @@ app.post("/", async(req, res) => {
 
     await newNote.save();
     res.send(`<!DOCTYPE html><html><body><h5 style="text-align: center;font-size:4rem;">copy this to the back of your passport before submiting
-    </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align: center;">${newNote.picturepath}</h1>
-    <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1></body></html>`)
+    </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align:center;">${newNote.picturepath}</h1>
+    </body></html>`)
         //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-        //res.redirect("/");
+        //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1>
 })
 
 connectDB().then(() => {
