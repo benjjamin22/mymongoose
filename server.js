@@ -95,7 +95,7 @@ app.post("/", async(req, res) => {
 
 
     await newNote.save();
-    res.send(`<!DOCTYPE html><html><body><h1 style="font-size:10rem; margin-top:0rem;text-align: center;">SUCCESSFUL</h1>
+    res.send(`<!DOCTYPE html><html><body><h1 style="font-size:8rem; margin-top:0rem;text-align: center;">SUCCESSFUL</h1>
     <h5 style="text-align: center;font-size:4rem;">copy number below to the back of your passport before submiting it
     </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align:center;">${newNote.picturepath}</h1>
     </body></html>`)
