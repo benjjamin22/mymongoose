@@ -29,12 +29,12 @@ const connectDB = async() => {
 }
 
 const NoteSchemer = new Schema({
-    id: { type: String, default: () => uuidv4(), required: true },
-    Aname: [{
+    obj: { type: String, default: () => uuidv4(), required: true },
+    Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
-    }],
+    },
     School: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
@@ -45,7 +45,7 @@ const NoteSchemer = new Schema({
     PhoneNo: { type: String, uppercase: true, unique: true, required: true },
     EmergencyNo: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
-    pi: { type: String, uppercase: true }
+    id: { type: String, uppercase: true }
 
 });
 NoteSchemer.pre("save", function(next) {
@@ -60,7 +60,7 @@ NoteSchemer.pre("save", function(next) {
     var docs = this;
     mongoose.model('Note', NoteSchemer).countDocuments()
         .then(function(counter) {
-            docs.pi = counter + 1;
+            docs.id = counter + 1;
             next();
         });
 });
@@ -75,11 +75,11 @@ app.get(["/", "/index.html"], (req, res) => {
 
 app.post("/", async(req, res) => {
     let newNote = new Note({
-        Aname: [{
+        Aname: {
             Name: req.body.Name,
             Mname: req.body.Mname,
             Surname: req.body.Surname
-        }],
+        },
         School: req.body.School,
         Dept: req.body.Dept,
         State: req.body.State,
