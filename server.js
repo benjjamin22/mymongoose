@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
+const { fail } = require('assert');
 
 
 
@@ -42,7 +43,7 @@ const NoteSchemer = new Schema({
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, },
+    Emerge: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
@@ -87,7 +88,7 @@ app.post("/", async(req, res) => {
         RegNo: req.body.RegNo,
         Bloodgroup: req.body.Bloodgroup,
         Sex: req.body.Sex,
-        PhoneNo: req.body.PhoneNo,
+        Emerge: req.body.Emerge,
         EmergencyNo: req.body.EmergencyNo,
         picturepath: '',
 
