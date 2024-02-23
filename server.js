@@ -43,7 +43,7 @@ const NoteSchemer = new Schema({
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
-    Emerge: { type: String, uppercase: true, },
+    PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
@@ -88,7 +88,7 @@ app.post("/", async(req, res) => {
         RegNo: req.body.RegNo,
         Bloodgroup: req.body.Bloodgroup,
         Sex: req.body.Sex,
-        Emerge: req.body.Emerge,
+        PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
         picturepath: '',
 
