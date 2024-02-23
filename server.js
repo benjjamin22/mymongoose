@@ -42,7 +42,7 @@ const NoteSchemer = new Schema({
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, unique: true, required: true },
+    PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
