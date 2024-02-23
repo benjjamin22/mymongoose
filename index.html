@@ -95,18 +95,7 @@
     </div>
 
     <script src="public/script.js"></script>.
-    <script>
-        window.addEventListener("pageshow", function(event) {
-            var historyTraversal = event.persisted;
-            perf = window.performance;
-            perfEntries = perf && perf.getEntriesByType && perf.getEntriesByType("navigation");
-            perfEntryType = perfEntries && perf.navigation[0] && perf.navigation[0].type;
-            navigationtype = perf && perf.navigation && perf.navigation.type;
-            if (historyTraversal || perfEntryType === "back_forward" || navigationtype === 2) {
-                window.location.reload();
-            }
-        })
-    </script>
+
 </bod>
 
 </html>
