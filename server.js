@@ -70,8 +70,8 @@ const Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
 
-app.get(["/", "/public/index.html"], (req, res) => {
-    res.sendFile(__dirname + "/public/index.html");
+app.get(["/", "/index.html"], (req, res) => {
+    res.sendFile(__dirname + "/index.html");
 })
 
 app.post("/", async(req, res) => {
