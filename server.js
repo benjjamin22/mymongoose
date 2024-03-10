@@ -45,6 +45,10 @@ const NoteSchemer = new Schema({
     Sex: { type: String, uppercase: true },
     PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String, uppercase: true },
+    Instagram: { type: String, uppercase: true },
+    Tiktok: { type: String, uppercase: true },
+    Twitter: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
 
@@ -90,6 +94,10 @@ app.post("/", async(req, res) => {
         Sex: req.body.Sex,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
+        Facebook: req.body.Facebook,
+        Instagram: req.body.Instagram,
+        Tiktok: req.body.Tiktok,
+        Twitter: req.body.Twitter,
         picturepath: '',
 
     });
