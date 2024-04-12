@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="public/style.css" />
     <title>Members App</title>
 </head>
 
@@ -78,7 +78,7 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Emerge" required>
+                            <input type="text" name="PhoneNo" required>
                             <label>Phone No</label>
                         </div>
                     </div>
@@ -92,13 +92,13 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Emerge" required>
+                            <input type="text" name="Facebook" required>
                             <label>Facebook</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="EmergencyNo" required>
+                            <input type="text" name="Instagram" required>
                             <label>Instagram</label>
                         </div>
                     </div>
@@ -106,13 +106,13 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Emerge" required>
+                            <input type="text" name="Tiktok" required>
                             <label>Tiktok</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="EmergencyNo" required>
+                            <input type="text" name="Twitter" required>
                             <label>Twitter</label>
                         </div>
                     </div>
@@ -121,8 +121,21 @@
             </form>
         </div>
     </div>
-
-    <script src="script.js"></script>.
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            var historyTraversal = event.persisted,
+                perf = window.performance,
+                perfEntries = perf && perf.getEntriesByType && perf.getEntriesByType("navigation"),
+                perfEntryType = perfEntries && perfEntries[0] && perfEntries[0].type,
+                navigationType = perf && perf.navigation && perf.navigation.type;
+            if (
+                historyTraversal || perfEntryType === "back_forward" || navigationType === 2
+            ) {
+                window.location.reload();
+            }
+        })
+    </script>
+    <script src="public/script.js"></script>.
 
 </bod>
 

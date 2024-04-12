@@ -36,10 +36,19 @@ const NoteSchemer = new Schema({
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
+    School: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    LocalGovt: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
-    Validity: { type: String, uppercase: true, },
+    PhoneNo: { type: String, uppercase: true, },
+    EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String, uppercase: true },
+    Instagram: { type: String, uppercase: true },
+    Tiktok: { type: String, uppercase: true },
+    Twitter: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
 
@@ -76,10 +85,19 @@ app.post("/", async(req, res) => {
             Mname: req.body.Mname,
             Surname: req.body.Surname
         },
+        School: req.body.School,
+        Dept: req.body.Dept,
+        State: req.body.State,
+        LocalGovt: req.body.LocalGovt,
         RegNo: req.body.RegNo,
         Bloodgroup: req.body.Bloodgroup,
         Sex: req.body.Sex,
-        Validity: req.body.PhoneNo,
+        PhoneNo: req.body.PhoneNo,
+        EmergencyNo: req.body.EmergencyNo,
+        Facebook: req.body.Facebook,
+        Instagram: req.body.Instagram,
+        Tiktok: req.body.Tiktok,
+        Twitter: req.body.Twitter,
         picturepath: '',
 
     });
