@@ -6,7 +6,21 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
-const { fail } = require('assert');
+const cron = require('node-cron');
+
+function keepServerAwaike() {
+    http.get('https://mymongoose.onrender.com', (res) => {
+        console.log(`Status Code: ${res.statusCode}`);
+    }).on('error', (e) => {
+        console.error(`Error: ${e.message}`);
+    });
+}
+
+// Schedule the task to run every 5 minutes
+cron.schedule('*/13 * * * *', () => {
+    console.log('Sending keep-alive request to server...');
+    keepServerAwaike();
+});
 
 
 
