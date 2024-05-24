@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
-//const cron = require('node-cron');
+const cron = require('node-cron');
+const axios = require('axios');
 
 //function keepServerAwaike() {
 //  http.get('https://mymongoose.onrender.com', (res) => {
@@ -21,6 +22,35 @@ const { v4: uuidv4 } = require('uuid');
 //  console.log('Sending keep-alive request to server...');
 // keepServerAwaike();
 //});
+
+const serverUrl = 'https://mymongoose.onrender.com';
+
+const keepAlive = () => {
+    axios.get(serverUrl)
+        .then(response => {
+            console.log(`server response with status:${response.status}`)
+        })
+        .catch(error => {
+            console.log(`error keeping server alive:${error.message}`)
+        })
+}
+
+
+//function keepServerAwaike() {
+//axios.get('https://mymongoose.onrender.com', (res) => {
+// console.log(`Status Code: ${res.statusCode}`);
+//}).on('error', (e) => {
+//console.error(`Error: ${e.message}`);
+//});
+//}
+
+//Schedule the task to run every 5 minutes
+cron.schedule('*/14 * * * *', () => {
+    console.log('Sending keep-alive request to server...');
+    keepAlive();
+});
+
+console.log('Keep-alive script started.');
 
 
 
