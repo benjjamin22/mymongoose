@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
 const cron = require('node-cron');
 const axios = require('axios');
+const { body } = require('express-validator');
 
 //function keepServerAwaike() {
 //  http.get('https://mymongoose.onrender.com', (res) => {
@@ -80,10 +81,19 @@ const NoteSchemer = new Schema({
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
+    School: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    LocalGovt: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
-    Validity: { type: String, uppercase: true, },
+    PhoneNo: { type: String, uppercase: true, },
+    EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String, uppercase: true },
+    Instagram: { type: String, uppercase: true },
+    Tiktok: { type: String, uppercase: true },
+    Twitter: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true }
 
@@ -113,17 +123,43 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", async(req, res) => {
+app.post("/", [
+    body('Name').trim().escape(),
+    body('Mname').trim().escape(),
+    body('Surname').trim().escape(),
+    body('School').trim().escape(),
+    body('Dept').trim().escape(),
+    body('State').trim().escape(),
+    body('LocalGovt').trim().escape(),
+    body('RegNo').trim().escape(),
+    body('Bloodgroup').trim().escape(),
+    body('Sex').trim().escape(),
+    body('PhoneNo').trim().escape(),
+    body('EmergencyNo').trim().escape(),
+    body('Facebook').isEmail().normalizeEmail(),
+    body('Instagram').isEmail().normalizeEmail(),
+    body('Tiktok').isEmail().normalizeEmail(),
+    body('Twitter').isEmail().normalizeEmail()
+], async(req, res) => {
     let newNote = new Note({
         Aname: {
             Name: req.body.Name,
             Mname: req.body.Mname,
             Surname: req.body.Surname
         },
+        School: req.body.School,
+        Dept: req.body.Dept,
+        State: req.body.State,
+        LocalGovt: req.body.LocalGovt,
         RegNo: req.body.RegNo,
         Bloodgroup: req.body.Bloodgroup,
         Sex: req.body.Sex,
-        Validity: req.body.PhoneNo,
+        PhoneNo: req.body.PhoneNo,
+        EmergencyNo: req.body.EmergencyNo,
+        Facebook: req.body.Facebook,
+        Instagram: req.body.Instagram,
+        Tiktok: req.body.Tiktok,
+        Twitter: req.body.Twitter,
         picturepath: '',
 
     });
