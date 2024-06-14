@@ -82,6 +82,7 @@ const NoteSchemer = new Schema({
         Surname: { type: String, uppercase: true }
     },
     School: { type: String, uppercase: true },
+    Faculty: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
     LocalGovt: { type: String, uppercase: true },
@@ -129,6 +130,7 @@ app.post("/", [
     body('Mname').trim().escape(),
     body('Surname').trim().escape(),
     body('School').trim().escape(),
+    body('Faculty').trim().escape(),
     body('Dept').trim().escape(),
     body('State').trim().escape(),
     body('LocalGovt').trim().escape(),
@@ -150,6 +152,7 @@ app.post("/", [
             Surname: req.body.Surname
         },
         School: req.body.School,
+        Faculty: req.body.Faculty,
         Dept: req.body.Dept,
         State: req.body.State,
         LocalGovt: req.body.LocalGovt,
