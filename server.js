@@ -24,6 +24,8 @@ const { body } = require('express-validator');
 // keepServerAwaike();
 //});
 
+
+
 const serverUrl = 'https://mymongoose.onrender.com';
 
 const keepAlive = () => {
@@ -60,8 +62,10 @@ const PORT = process.env.PORT || 8000
 
 //const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.set('strictQuery', false);
 const connectDB = async() => {
