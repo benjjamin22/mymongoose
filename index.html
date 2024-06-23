@@ -85,6 +85,7 @@
                     <label>Hometown/Community</label>
                 </div>
                 <input type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
+                <div id="result" class="card"><img style="height: 10rem; width: 9rem;margin-top: .5rem;" id="imgDisplayed"></div>
 
         </div>
         <button class="btn" type="submit">SUBMIT</button>
@@ -104,6 +105,11 @@
                 window.location.reload();
             }
         })
+
+        function loadImage(event) {
+            const image = document.getElementById("imgDisplayed");
+            image.src = URL.createObjectURL(event.target.files[0]);
+        }
     </script>
     <script src="public/script.js"></script>.
 
