@@ -24,22 +24,34 @@
                     <input type="text" name="School" required>
                     <label style="margin-top:-1rem;color: lightblue;">Present School</label>
                 </div>
-                <div class="form-control">
-                    <input type="text" name="Validity" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
+                <div class="Card-line">
+                    <div class="Card">
+
+                        <div class="form-control">
+                            <input type="text" name="Validity" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="Faculty" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Present class</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="Surname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="Mname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
+                        </div>
+                    </div>
+
+                    <div class="form-contro" style="margin-top:1rem;">
+                        <div id="result" class="card"><img style="height: 10rem; width: 9rem;" id="imgDisplayed"></div>
+                        <input style="width: 9rem;" type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
+                    </div>
+
                 </div>
-                <div class="form-control">
-                    <input type="text" name="Faculty" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Present class</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="Surname" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Surname</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="Mname" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
-                </div>
+
                 <div class="form-control">
                     <input type="text" name="Name" required>
                     <label style="margin-top:-1rem;color: lightblue;">First Name</label>
@@ -85,8 +97,6 @@
                     <input type="text" name="State" required>
                     <label style="margin-top:-1rem;color: lightblue;">Hometown/Community</label>
                 </div>
-                <input type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
-                <div id="result" class="card"><img style="height: 10rem; width: 9rem;margin-top: .5rem;" id="imgDisplayed"></div>
                 <div class="form-control">
                     <input type="text" name="Facebook" value="VEENATE COMMUNICATION" readonly>
                     <label style="margin-top:-1rem;color: lightblue;">CLIENT</label>
