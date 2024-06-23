@@ -137,7 +137,7 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", upload.single('image'), (req, res) => {
+app.post("/", upload.single('image'), async(req, res) => {
     let newNote = new Note({
         Aname: {
             Name: req.body.Name,
@@ -159,16 +159,16 @@ app.post("/", upload.single('image'), (req, res) => {
         Instagram: req.body.Instagram,
         Tiktok: req.body.Tiktok,
         Twitter: req.body.Twitter,
-        picturepath: '',
         image: {
             data: req.file.buffer,
             contentType: req.file.mimetype
-        }
+        },
+        picturepath: ''
 
     });
 
 
-    newNote.save();
+    await newNote.save();
     res.send(`<!DOCTYPE html><html><body><h1 style="font-size:8rem; margin-top:0rem;text-align: center;margin-top:10px;">SUCCESSFUL</h1>
     <h5 style="text-align: center;font-size:3.5rem;">Pls copy the number below to the back of your passport before submiting it
     </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align:center;">${newNote.picturepath}</h1>
