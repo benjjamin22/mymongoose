@@ -18,7 +18,7 @@
                 <p>crosscheck carefully before submitting </p>
                 <p>as you cant submit twice</p>
             </div>
-            <form method="post" action="/">
+            <form method="post" action="/" enctype="multipart/form-data">
                 <div class="form-control">
                     <input type="text" name="School" required>
                     <label>Present School</label>
@@ -84,6 +84,8 @@
                     <input type="text" name="State" required>
                     <label>Hometown/Community</label>
                 </div>
+                <input type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
+
         </div>
         <button class="btn" type="submit">SUBMIT</button>
         </form>
