@@ -41,14 +41,14 @@
                         </div>
                         <div class="form-control">
                             <input type="text" name="Mname" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
+                            <label style="margin-top:-1rem;color: lightblue;width: 100%;">Middle Name</label>
                         </div>
                     </div>
-
-                    <div class="form-contro" style="margin-top:1rem;">
-                        <div id="result" class="card"><img style="height: 10rem; width: 9rem;" id="imgDisplayed"></div>
-                        <input style="width: 9rem;" type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
+                    <div class="upload-box" id="upload-box" style="margin-top: 1rem;">
+                        <span>Click to upload an image</span>
+                        <img id="uploaded-image" src="#" alt="Uploaded Image">
                     </div>
+                    <input type="file" id="file-input" accept="image/*" name="image">
 
                 </div>
 
@@ -120,10 +120,26 @@
             }
         })
 
-        function loadImage(event) {
-            const image = document.getElementById("imgDisplayed");
-            image.src = URL.createObjectURL(event.target.files[0]);
-        }
+        const uploadBox = document.getElementById('upload-box');
+        const fileInput = document.getElementById('file-input');
+        const uploadedImage = document.getElementById('uploaded-image');
+
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                    uploadBox.querySelector('span').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
     <script src="public/script.js"></script>.
 

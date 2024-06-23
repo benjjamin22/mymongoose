@@ -84,8 +84,11 @@
                     <input type="text" name="State" required>
                     <label>Hometown/Community</label>
                 </div>
-                <input type="file" id="image" accept="image/*" onchange="loadImage(event)" name="image">
-                <div id="result" class="card"><img style="height: 10rem; width: 9rem;margin-top: .5rem;" id="imgDisplayed"></div>
+                <div class="upload-box" id="upload-box">
+                    <span>Click to upload an image</span>
+                    <img id="uploaded-image" src="#" alt="Uploaded Image">
+                </div>
+                <input type="file" id="file-input" accept="image/*">
 
         </div>
         <button class="btn" type="submit">SUBMIT</button>
@@ -106,10 +109,26 @@
             }
         })
 
-        function loadImage(event) {
-            const image = document.getElementById("imgDisplayed");
-            image.src = URL.createObjectURL(event.target.files[0]);
-        }
+        const uploadBox = document.getElementById('upload-box');
+        const fileInput = document.getElementById('file-input');
+        const uploadedImage = document.getElementById('uploaded-image');
+
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                    uploadBox.querySelector('span').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
     <script src="public/script.js"></script>.
 
