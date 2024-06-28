@@ -6,17 +6,71 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
-const { fail } = require('assert');
+const cron = require('node-cron');
+const axios = require('axios');
+const { body } = require('express-validator');
+const multer = require('multer');
+const sharp = require('sharp');
+
+//function keepServerAwaike() {
+//  http.get('https://mymongoose.onrender.com', (res) => {
+//    console.log(`Status Code: ${res.statusCode}`);
+//}).on('error', (e) => {
+//  console.error(`Error: ${e.message}`);
+//});
+//}
+
+// Schedule the task to run every 5 minutes
+//cron.schedule('*/14 * * * *', () => {
+//  console.log('Sending keep-alive request to server...');
+// keepServerAwaike();
+//});
+
+
+
+const serverUrl = 'https://mymongoose.onrender.com';
+
+const keepAlive = () => {
+    axios.get(serverUrl)
+        .then(response => {
+            console.log(`server response with status:${response.status}`)
+        })
+        .catch(error => {
+            console.log(`error keeping server alive:${error.message}`)
+        })
+}
+
+
+//function keepServerAwaike() {
+//axios.get('https://mymongoose.onrender.com', (res) => {
+// console.log(`Status Code: ${res.statusCode}`);
+//}).on('error', (e) => {
+//console.error(`Error: ${e.message}`);
+//});
+//}
+
+//Schedule the task to run every 5 minutes
+cron.schedule('*/14 * * * *', () => {
+    console.log('Sending keep-alive request to server...');
+    keepAlive();
+});
+
+console.log('Keep-alive script started.');
 
 
 
 const app = express()
 const PORT = process.env.PORT || 8000
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
+
 //const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
+
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 mongoose.set('strictQuery', false);
 const connectDB = async() => {
@@ -37,12 +91,14 @@ const NoteSchemer = new Schema({
         Surname: { type: String, uppercase: true }
     },
     School: { type: String, uppercase: true },
+    Faculty: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
     LocalGovt: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
     PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     Facebook: { type: String, uppercase: true },
@@ -50,7 +106,11 @@ const NoteSchemer = new Schema({
     Tiktok: { type: String, uppercase: true },
     Twitter: { type: String, uppercase: true },
     picturepath: { type: String, uppercase: true },
-    id: { type: String, uppercase: true }
+    id: { type: String, uppercase: true },
+    image: {
+        data: Buffer,
+        contentType: String
+    }
 
 });
 NoteSchemer.pre("save", function(next) {
@@ -78,7 +138,8 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
-app.post("/", async(req, res) => {
+app.post("/", upload.single('image'), async(req, res) => {
+
     let newNote = new Note({
         Aname: {
             Name: req.body.Name,
@@ -86,19 +147,25 @@ app.post("/", async(req, res) => {
             Surname: req.body.Surname
         },
         School: req.body.School,
+        Faculty: req.body.Faculty,
         Dept: req.body.Dept,
         State: req.body.State,
         LocalGovt: req.body.LocalGovt,
         RegNo: req.body.RegNo,
         Bloodgroup: req.body.Bloodgroup,
         Sex: req.body.Sex,
+        Validity: req.body.Validity,
         PhoneNo: req.body.PhoneNo,
         EmergencyNo: req.body.EmergencyNo,
         Facebook: req.body.Facebook,
         Instagram: req.body.Instagram,
         Tiktok: req.body.Tiktok,
         Twitter: req.body.Twitter,
-        picturepath: '',
+        image: {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+        },
+        picturepath: ''
 
     });
 
