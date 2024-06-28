@@ -140,6 +140,11 @@ app.get(["/", "/index.html"], (req, res) => {
 
 app.post("/", upload.single('image'), async(req, res) => {
 
+    const buffer = await sharp(req.file.buffer)
+        .resize({ width: 800 })
+        .jpeg({ quality: 40 })
+        .toBuffer();
+
     let newNote = new Note({
         Aname: {
             Name: req.body.Name,
@@ -162,7 +167,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         Tiktok: req.body.Tiktok,
         Twitter: req.body.Twitter,
         image: {
-            data: req.file.buffer,
+            data: buffer,
             contentType: req.file.mimetype
         },
         picturepath: ''
