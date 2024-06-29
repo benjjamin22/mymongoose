@@ -1,0 +1,35 @@
+{ "web": { "client_id": "565216980544-f754dsc3n4ljau400higel1oqdauenf2.apps.googleusercontent.com", "project_id": "mydatabase-426702", "auth_uri": "https://accounts.google.com/o/oauth2/auth", "token_uri": "https://oauth2.googleapis.com/token", "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs", "client_secret": "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", "redirect_uris": ["https://www.id.mydatabase.com.ng/"], "javascript_origins": ["http://localhost:3000"] } }
+
+POST / token HTTP / 1.1
+Host: oauth2.googleapis.com
+Content - length: 317
+content - type: application / x - www - form - urlencoded
+user - agent: google - oauth - playground
+code = 4 % 2 F0ATx3LY43v5 - Nejy - ZD763j4voCi - LhVbxbxhQ4CTd2ia - A3DU_8 - b7NSqy4cu2wrjley2w & redirect_uri = https % 3 A % 2 F % 2 Fdevelopers.google.com % 2 Foauthplayground & client_id = 299799989715 - 9 j5t32aoriem1chgjkd1d91vleh9njni.apps.googleusercontent.com & client_secret = GOCSPX - HVUM5pv3T6v6jdHnd6tZaEKu0EsE & scope = & grant_type = authorization_code
+HTTP / 1.1 200 OK
+Content - length: 473
+X - xss - protection: 0
+X - content - type - options: nosniff
+Transfer - encoding: chunked
+Expires: Mon, 01 Jan 1990 00: 00: 00 GMT
+Vary: Origin, X - Origin, Referer
+Server: scaffolding on HTTPServer2 -
+    content - encoding: gzip
+Pragma: no - cache
+Cache - control: no - cache, no - store, max - age = 0, must - revalidate
+Date: Fri, 28 Jun 2024 08: 55: 20 GMT
+X - frame - options: SAMEORIGIN
+Alt - svc: h3 = ":443";
+ma = 2592000, h3 - 29 = ":443";
+ma = 2592000
+Content - type: application / json;
+charset = utf - 8 {
+    "access_token": "ya29.a0AXooCgsFL5SCjiT-Arpxm4nnPy5HQnTA3B5JxS8C47Cn7E41Z5rdf0PwJ5WSorHpASXPZEWAzKxDlfz2VzHZClBC7gt4LTXof16kchY2vDjrGh6_owfApWhRjhQy2AgHsvEHiVGCefN1atx_JcyArhWkrz8waNErQUyAaCgYKARMSARESFQHGX2MipzNFvi6rzsm4hOsD_th4pQ0171",
+    "scope": "https://www.googleapis.com/auth/drive.file",
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "refresh_token": "1//04KgI0Be8FgLhCgYIARAAGAQSNwF-L9Irn5Dcch66s75X6ERf0Nb8ToDu75mR4BSu_eU9iMjgmQaI7PplbQny4ewCJ3nu-iU2_S8"
+}
+
+
+https: //drive.google.com/drive/folders/10KpoRo-jHT62ko_7BNH9khxA2S_6GY42?usp=drive_link
