@@ -157,7 +157,7 @@ async function uploadImageToGoogleDrive(file) {
     };
 
     const media = {
-        mimeType: file.mimetype,
+        parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
         body: bufferStream
     };
 
