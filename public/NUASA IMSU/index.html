@@ -13,71 +13,45 @@
 
     <div class="container">
         <div class="cont">
-            <h1 style="font-size: 25px;">NUASA IMSU</h1>
-            <h1 style="margin-top:1.5rem;font-size: 25px;">ID CARD FORM</h1>
+            <h1>NUASA IMSU</h1>
+            <h1 style="margin-top:1.5rem ;">ID CARD FORM</h1>
             <div class="text">
                 <p>crosscheck carefully before submitting </p>
                 <p>as you cant submit twice</p>
             </div>
             <form method="post" action="/" enctype="multipart/form-data">
-                <div class="form-control">
-                    <label style="margin-top:-1rem;color: lightblue;">First Name</label>
-                    <input type="text" name="Name" required>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <label style="margin-top:-1rem;color: lightblue;">First Name</label>
+                            <input style="width: 10.3rem;" type="text" name="Name" required>
+                        </div>
+                        <div class="form-control">
+                            <input style="width: 10.3rem;" type="text" name="Mname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
+                        </div>
+                        <div class="form-control">
+                            <input input style="width: 10.3rem;" type="text" name="Surname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
+                        </div>
+                        <div class="form-control">
+                            <input style="width: 10.3rem;" type="text" name="School" value="NUASA IMSU" readonly>
+                            <label style="margin-top:-1rem;color: lightblue;">School</label>
+                        </div>
+                    </div>
+                    <div class="upload-box" id="upload-box" style="margin-top: 1.5rem;height: 12.5rem;width: 12rem;">
+                        <span>Click to upload an image</span>
+                        <img id="uploaded-image" src="#" alt="Uploaded Image">
+                    </div>
+                    <input type="file" id="file-input" accept="image/*" name="image">
                 </div>
-
-                <div class="form-control">
-                    <input type="text" name="Mname" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="Surname" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Surname</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="School" value="IMSU NUASA" readonly>
-                    <label style="margin-top:-1rem;color: lightblue;">School</label>
-                </div>
-                <div class="form-control">
+                <div class="form-control" style="margin-top: 0rem;">
                     <input type="text" name="Faculty" required>
                     <label style="margin-top:-1rem;color: lightblue;">faculty</label>
                 </div>
                 <div class="form-control">
                     <input type="text" name="Dept" required>
                     <label style="margin-top:-1rem;color: lightblue;">Dept</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="State" required>
-                    <label style="margin-top:-1rem;color: lightblue;">State of Origin</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="LocalGovt" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Local Govt.</label>
-                </div>
-                <div class="Card-line">
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="RegNo">
-                            <label style="margin-top:-1rem;color: lightblue;">Reg No.</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Bloodgroup">
-                            <label style="margin-top:-1rem;color: lightblue;">B/Group</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Sex">
-                            <label style="margin-top:-1rem;color: lightblue;">Gender</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Validity">
-                            <label style="margin-top:-1rem;color: lightblue;">Validity</label>
-                        </div>
-                    </div>
                 </div>
                 <div class="Card-line">
                     <div class="Card">
@@ -96,28 +70,14 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Facebook">
-                            <label style="margin-top:-1rem;color: lightblue;">Facebook</label>
+                            <input type="text" name="RegNo" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Reg No.</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Instagram">
-                            <label style="margin-top:-1rem;color: lightblue;">Instagram</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="Card-line">
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Tiktok">
-                            <label style="margin-top:-1rem;color: lightblue;">Tiktok</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Twitter">
-                            <label style="margin-top:-1rem;color: lightblue;">witter</label>
+                            <input type="text" name="Validity" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Validity</label>
                         </div>
                     </div>
                 </div>
@@ -138,6 +98,27 @@
                 window.location.reload();
             }
         })
+
+        const uploadBox = document.getElementById('upload-box');
+        const fileInput = document.getElementById('file-input');
+        const uploadedImage = document.getElementById('uploaded-image');
+
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                    uploadBox.querySelector('span').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
     </script>
     <script src="public/script.js"></script>.
 
