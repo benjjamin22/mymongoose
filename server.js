@@ -153,7 +153,7 @@ async function uploadImageToGoogleDrive(file) {
     bufferStream.end(file.buffer);
     const fileMetadata = {
         name: file.originalname,
-        mimeType: file.mimetype
+        parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
 
     const media = {
