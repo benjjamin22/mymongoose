@@ -164,10 +164,10 @@ async function uploadImageToGoogleDrive(file) {
     const response = await drive.files.create({
         resource: fileMetadata,
         media: media,
-        fields: 'id,webViewLink,webContentLink'
+        fields: 'id,name'
     });
 
-    return response.data.id
+    return response.data.name
 }
 
 app.post("/", upload.single('image'), async(req, res) => {
