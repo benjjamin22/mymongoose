@@ -65,7 +65,7 @@ const drive = google.drive({ version: 'v3', auth: oauth2Client });
 //Schedule the task to run every 5 minutes
 cron.schedule('*/14 * * * *', () => {
     console.log('Sending keep-alive request to server...');
-    keepAlive();
+    keepAlive;
 });
 
 console.log('Keep-alive script started.');
