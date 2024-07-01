@@ -151,8 +151,9 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
+    const uuid = uuidv4();
     const fileMetadata = {
-        name: file.originalname,
+        name: uuid,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
 
