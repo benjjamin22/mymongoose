@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
-const cron = require('node-cron');
+const ron = require('node-cron');
 const axios = require('axios');
 const { body } = require('express-validator');
 const multer = require('multer');
@@ -65,7 +65,7 @@ const drive = google.drive({ version: 'v3', auth: oauth2Client });
 //Schedule the task to run every 5 minutes
 cron.schedule('*/14 * * * *', () => {
     console.log('Sending keep-alive request to server...');
-    keepAlive;
+    keepAlive();
 });
 
 console.log('Keep-alive script started.');
