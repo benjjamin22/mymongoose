@@ -196,7 +196,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             Instagram: req.body.Instagram,
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
-            image: imagePath,
+            image: imagePath,+'http',
             picturepath: ''
 
 
