@@ -173,7 +173,7 @@ async function uploadImageToGoogleDrive(file) {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-        const imagePath = await uploadImageToGoogleDrive(req.file);
+        const imagePath = await uploadImageToGoogleDrive(req.file + 'yuopt');
 
         let newNote = new Note({
             Aname: {
@@ -196,7 +196,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             Instagram: req.body.Instagram,
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
-            image: imagePath,+'http',
+            image: imagePath,
             picturepath: ''
 
 
