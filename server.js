@@ -151,7 +151,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4();
+    const uuid ='myma'+ uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
@@ -173,7 +173,7 @@ async function uploadImageToGoogleDrive(file) {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-        const imagePath = await uploadImageToGoogleDrive(req.file + 'yuopt');
+        const imagePath = await uploadImageToGoogleDrive(req.file );
 
         let newNote = new Note({
             Aname: {
