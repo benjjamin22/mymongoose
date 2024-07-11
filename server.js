@@ -120,7 +120,7 @@ const NoteSchemer = new Schema({
     Twitter: { type: String },
     picturepath: { type: String, uppercase: true },
     id: { type: String, uppercase: true },
-    image: { type: String }
+    image: { type: String,$concat: [ "$image", "fefe"] }
 
 });
 NoteSchemer.pre("save", function(next) {
@@ -151,7 +151,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid ='myma'+ uuidv4() + '.jpg';
+    const uuid = uuidv4() ;
     const fileMetadata = {
         name: uuid,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
