@@ -20,12 +20,11 @@
                 <p>as you cant submit twice</p>
             </div>
             <form method="post" action="/" enctype="multipart/form-data">
-
                 <div class="upload-box" id="upload-box" style="margin-top: 1.5rem;height: 12.5rem;width: 12rem;">
                     <span>Click to upload an image</span>
                     <img id="uploaded-image" src="#" alt="Uploaded Image">
                 </div>
-                <input type="file" id="file-input" accept="image/*" name="image">
+                <input type="file" id="file-input" multiple accept="image/*" name="image">
 
                 <button class="btn" type="submit">SUBMIT</button>
             </form>
