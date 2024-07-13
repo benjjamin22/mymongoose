@@ -112,7 +112,7 @@ const NoteSchemer = new Schema({
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
     Validity: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, unique: true },
+    PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     Facebook: { type: String },
     Instagram: { type: String },
@@ -151,9 +151,10 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4();
+    const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
+        //name: file.originalname,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
 
@@ -173,7 +174,8 @@ async function uploadImageToGoogleDrive(file) {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-        const imagePath = await uploadImageToGoogleDrive(req.file);
+        const Pathoo = await uploadImageToGoogleDrive(req.file);
+        const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
 
         let newNote = new Note({
             Aname: {

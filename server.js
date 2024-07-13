@@ -118,19 +118,12 @@ const NoteSchemer = new Schema({
     Instagram: { type: String },
     Tiktok: { type: String },
     Twitter: { type: String },
-    picturepath: { type: String, uppercase: true },
+    picturepath: { type: String },
     id: { type: String, uppercase: true },
-    image: { type: String }
+
 
 });
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.picturepath = counter + 1;
-            next();
-        });
-});
+
 NoteSchemer.pre("save", function(next) {
     var docs = this;
     mongoose.model('Note', NoteSchemer).countDocuments()
@@ -174,7 +167,8 @@ async function uploadImageToGoogleDrive(file) {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-        const imagePath = await uploadImageToGoogleDrive(req.file);
+        const Pathoo = await uploadImageToGoogleDrive(req.file);
+        const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
 
         let newNote = new Note({
             Aname: {
@@ -197,8 +191,8 @@ app.post("/", upload.single('image'), async(req, res) => {
             Instagram: req.body.Instagram,
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
-            image: imagePath,
-            picturepath: ''
+            picturepath: imagePath,
+
 
 
         });
