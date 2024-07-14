@@ -97,7 +97,7 @@ const connectDB = async() => {
 }
 
 const NoteSchemer = new Schema({
-    obj: { type: String, default: () => uuidv4(), required: true },
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -119,18 +119,9 @@ const NoteSchemer = new Schema({
     Tiktok: { type: String },
     Twitter: { type: String },
     picturepath: { type: String },
-    id: { type: String, uppercase: true },
 
 
-});
 
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.id = counter + 1;
-            next();
-        });
 });
 
 const Note = mongoose.model("Note", NoteSchemer);
