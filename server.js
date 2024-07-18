@@ -81,6 +81,7 @@ const upload = multer({ storage: storage });
 //const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
 
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -95,6 +96,8 @@ const connectDB = async() => {
         process.exit(1);
     }
 }
+
+
 
 const NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
@@ -156,6 +159,16 @@ async function uploadImageToGoogleDrive(file) {
     return response.data.name
 }
 
+app.get('/detail', async(req, res) => {
+    try {
+        const data = await Note.find();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 app.post("/", upload.single('image'), async(req, res) => {
     try {
         const Pathoo = await uploadImageToGoogleDrive(req.file);
@@ -202,6 +215,7 @@ app.post("/", upload.single('image'), async(req, res) => {
     //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
     //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1>
 })
+
 
 
 

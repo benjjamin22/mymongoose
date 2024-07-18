@@ -226,3 +226,70 @@ connectDB().then(() => {
         console.log("listening for requests");
     })
 });
+
+
+//server.js
+
+//require('dotenv').config();
+const express = require('express');
+const mongoose = require('mongoose');
+const app = express();
+
+const port = process.env.PORT || 3000;
+
+mongoose
+    .connect("mongodb://localhost:27017/GFGDatabase")
+    .then((err) => {
+
+        console.log("Connected to the database");
+        addDataToMongodb();
+    });
+const data = [{
+        name: "John",
+        class: "GFG"
+    },
+    {
+        name: "Doe",
+        class: "GFG"
+    },
+    {
+        name: "Smith",
+        class: "GFG"
+    },
+    {
+        name: "Peter",
+        class: "GFG"
+    }
+]
+const gfgSchema = new mongoose
+    .Schema({
+        name: { type: String, required: true },
+        class: { type: String, required: true },
+    });
+
+const GFGCollection = mongoose
+    .model("GFGCollection", gfgSchema);
+
+async function addDataToMongodb() {
+    await GFGCollection
+        .deleteMany();
+    await GFGCollection
+        .insertMany(data);
+    console.log("Data added to MongoDB");
+}
+
+app.get('/', async(req, res) => {
+    try {
+        const data = await GFGCollection.find();
+        res.json(data);
+        console.log(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app
+    .listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
