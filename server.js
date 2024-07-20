@@ -123,9 +123,10 @@ const NoteSchemer = new Schema({
     Twitter: { type: String },
     picturepath: { type: String },
     fullname: { type: String, uppercase: true },
+    time: { type: String, uppercase: true },
 
 
-}, { timestamps: true });
+});
 
 const Note = mongoose.model("Note", NoteSchemer);
 
@@ -174,6 +175,23 @@ app.post("/", upload.single('image'), async(req, res) => {
         const Pathoo = await uploadImageToGoogleDrive(req.file);
         const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
 
+        function pad(n) {
+            return n < 10 ? '0' + n : n;
+        }
+
+        // Get the current date and time
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = pad(now.getMonth() + 1); // Months are zero-based
+        const day = pad(now.getDate());
+        const hours = pad(now.getHours());
+        const minutes = pad(now.getMinutes());
+        const seconds = pad(now.getSeconds());
+
+        // Format the date and time
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+
         let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
@@ -197,6 +215,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             Twitter: req.body.Twitter,
             picturepath: imagePath,
             fullname: req.body.fullname,
+            time: formattedDate,
 
 
 
