@@ -122,7 +122,7 @@ const NoteSchemer = new Schema({
     Tiktok: { type: String },
     Twitter: { type: String },
     picturepath: { type: String },
-    fullname: { type: String, uppercase: true },
+    Name: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
 
 
@@ -214,7 +214,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
             picturepath: imagePath,
-            fullname: req.body.fullname,
+            Name: req.body.fullname,
             time: formattedDate,
 
 
