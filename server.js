@@ -107,6 +107,7 @@ const NoteSchemer = new Schema({
         Surname: { type: String, uppercase: true }
     },
     School: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
     Faculty: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
@@ -122,7 +123,7 @@ const NoteSchemer = new Schema({
     Tiktok: { type: String },
     Twitter: { type: String },
     picturepath: { type: String },
-    fullame: { type: String, uppercase: true },
+    Fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
 
 
@@ -199,6 +200,7 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Surname: req.body.Surname
             },
             School: req.body.School,
+            Status: 'MEMBER',
             Faculty: req.body.Faculty,
             Dept: req.body.Dept,
             State: req.body.State,
@@ -214,7 +216,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
             picturepath: imagePath,
-            fullname: req.body.fullname,
+            Fullname: req.body.fullname,
             time: formattedDate,
 
 
