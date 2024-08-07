@@ -56,6 +56,9 @@ pre {
     height: 0;
 }
 
+.container.cont.flip {
+    animation: flipdiv 2s infinite;
+}
 
 /* Navbar */
 
@@ -426,5 +429,29 @@ pre {
     }
     .showcase-form {
         width: 400px;
+    }
+}
+
+
+.flip {
+    margin: -1;
+    animation: flipdiv 2s infinite;
+}
+
+@keyframes flip {
+    50% {
+        transform: rotateX(180deg);
+    }
+    to {
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes flip {
+    50% {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateY(360deg);
     }
 }
