@@ -65,7 +65,7 @@ const drive = google.drive({ version: 'v3', auth: oauth2Client });
 //Schedule the task to run every 5 minutes
 cron.schedule('*/14 * * * *', () => {
     console.log('Sending keep-alive request to server...');
-    keepAlive();
+    keepAlive;
 });
 
 console.log('Keep-alive script started.');
@@ -140,7 +140,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4() + '.jpg';
+    const uuid = uuidv4() + '.JPG';
     const fileMetadata = {
         name: uuid,
         //name: file.originalname,
