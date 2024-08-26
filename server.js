@@ -164,8 +164,7 @@ async function uploadImageToGoogleDrive(file) {
 app.get('/detail', async(req, res) => {
     try {
         const data = await Note.find();
-        const dataa = data.filter(o => o.School === 'detail')
-        res.json(dataa);
+        res.json(data);
     } catch (err) {
         console.log(err);
         res.status(500).send("Internal Server Error");
