@@ -164,7 +164,19 @@ async function uploadImageToGoogleDrive(file) {
 app.get('/detail', async(req, res) => {
     try {
         const data = await Note.find();
-        res.json(data);
+        const dataa = data.filter(o => o.School === 'detail')
+        res.json(dataa);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get('/detail', async(req, res) => {
+    try {
+        const data = await Note.find();
+        const dataa = data.filter(o => o.School === 'AMARAKU SECONDARY SCHOOL AMARAKU')
+        res.json(dataa);
     } catch (err) {
         console.log(err);
         res.status(500).send("Internal Server Error");
