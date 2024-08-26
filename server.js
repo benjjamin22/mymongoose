@@ -172,7 +172,7 @@ app.get('/detail', async(req, res) => {
     }
 });
 
-app.get('/detail', async(req, res) => {
+app.get('/ASSA', async(req, res) => {
     try {
         const data = await Note.find();
         const dataa = data.filter(o => o.School === 'AMARAKU SECONDARY SCHOOL AMARAKU')
