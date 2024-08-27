@@ -100,6 +100,7 @@ const connectDB = async() => {
 
 
 const NoteSchemer = new Schema({
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
