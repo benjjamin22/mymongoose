@@ -106,21 +106,24 @@ const NoteSchemer = new Schema({
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
-    Status: { type: String, uppercase: true },
     School: { type: String, uppercase: true },
-    YearofAdmin: { type: String, uppercase: true },
-    Presentclass: { type: String, uppercase: true },
-    DateofBirth: { type: String, uppercase: true },
-    Gender: { type: String, uppercase: true },
-    Bloodgroup: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    Faculty: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    LocalGovt: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
-    ParentPhoneNo: { type: String, uppercase: true },
-    ParentPhoneNo2: { type: String, uppercase: true },
-    NIN: { type: String, uppercase: true, unique: true },
-    HometownCommunity: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
+    PhoneNo: { type: String, uppercase: true, unique: true },
+    EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String },
+    Instagram: { type: String },
+    Tiktok: { type: String },
+    Twitter: { type: String },
     picturepath: { type: String },
-    client: { type: String },
+    fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
 
 
@@ -208,19 +211,27 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Surname: req.body.Surname
             },
             School: req.body.School,
-            Status: 'STUDENT',
-            YearofAdmin: req.body.YearofAdmin,
-            Presentclass: req.body.Presentclass,
-            DateofBirth: req.body.DateofBirth,
-            Gender: req.body.Gender,
+            Status: 'MEMBER',
+            Faculty: req.body.Faculty,
+            Dept: req.body.Dept,
+            State: req.body.State,
+            LocalGovt: req.body.LocalGovt,
+            RegNo: req.body.RegNo,
             Bloodgroup: req.body.Bloodgroup,
-            ParentPhoneNo: req.body.ParentPhoneNo,
-            ParentPhoneNo2: req.body.ParentPhoneNo2,
-            NIN: req.body.NIN,
-            HometownCommunity: req.body.HometownCommunity,
-            client: req.body.client,
+            Sex: req.body.Sex,
+            Validity: req.body.Validity,
+            PhoneNo: req.body.PhoneNo,
+            EmergencyNo: req.body.EmergencyNo,
+            Facebook: req.body.Facebook,
+            Instagram: req.body.Instagram,
+            Tiktok: req.body.Tiktok,
+            Twitter: req.body.Twitter,
             picturepath: imagePath,
+            fullname: req.body.fullname,
             time: formattedDate,
+
+
+
         });
 
 
@@ -233,7 +244,7 @@ app.post("/", upload.single('image'), async(req, res) => {
     //fs.unlinkSync(req.file.path); // Clean up the uploaded file
     //}
     //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.HometownCommunity}</h1>
+    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1>
 })
 
 
