@@ -81,6 +81,7 @@ const upload = multer({ storage: storage });
 //const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
 
 
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -96,14 +97,17 @@ const connectDB = async() => {
     }
 }
 
+
+
 const NoteSchemer = new Schema({
-    obj: { type: String, default: () => uuidv4(), required: true },
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
     School: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
     Faculty: { type: String, uppercase: true },
     Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
@@ -112,32 +116,17 @@ const NoteSchemer = new Schema({
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
     Validity: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, },
+    PhoneNo: { type: String, uppercase: true, unique: true },
     EmergencyNo: { type: String, uppercase: true },
     Facebook: { type: String },
     Instagram: { type: String },
     Tiktok: { type: String },
     Twitter: { type: String },
-    picturepath: { type: String, uppercase: true },
-    id: { type: String, uppercase: true },
-    image: { type: String }
+    picturepath: { type: String },
+    fullname: { type: String, uppercase: true },
+    time: { type: String, uppercase: true },
 
-});
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.picturepath = counter + 1;
-            next();
-        });
-});
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.id = counter + 1;
-            next();
-        });
+
 });
 
 const Note = mongoose.model("Note", NoteSchemer);
@@ -151,7 +140,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4() + '.jpg';
+    const uuid = uuidv4() + '.JPG';
     const fileMetadata = {
         name: uuid,
         //name: file.originalname,
@@ -172,10 +161,48 @@ async function uploadImageToGoogleDrive(file) {
     return response.data.name
 }
 
+app.get('/detail', async(req, res) => {
+    try {
+        const data = await Note.find();
+        res.json(data);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.get('/ASSA', async(req, res) => {
+    try {
+        const data = await Note.find();
+        const dataa = data.filter(o => o.School === 'AMARAKU SECONDARY SCHOOL AMARAKU')
+        res.json(dataa);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 app.post("/", upload.single('image'), async(req, res) => {
     try {
         const Pathoo = await uploadImageToGoogleDrive(req.file);
         const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
+
+        function pad(n) {
+            return n < 10 ? '0' + n : n;
+        }
+
+        // Get the current date and time
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = pad(now.getMonth() + 1); // Months are zero-based
+        const day = pad(now.getDate());
+        const hours = pad(now.getHours());
+        const minutes = pad(now.getMinutes());
+        const seconds = pad(now.getSeconds());
+
+        // Format the date and time
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
 
         let newNote = new Note({
             Aname: {
@@ -184,6 +211,7 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Surname: req.body.Surname
             },
             School: req.body.School,
+            Status: 'MEMBER',
             Faculty: req.body.Faculty,
             Dept: req.body.Dept,
             State: req.body.State,
@@ -198,18 +226,18 @@ app.post("/", upload.single('image'), async(req, res) => {
             Instagram: req.body.Instagram,
             Tiktok: req.body.Tiktok,
             Twitter: req.body.Twitter,
-            image: imagePath,
-            picturepath: ''
+            picturepath: imagePath,
+            fullname: req.body.fullname,
+            time: formattedDate,
+
 
 
         });
 
 
         await newNote.save();
-        res.send(`<!DOCTYPE html><html><body><h1 style="font-size:8rem; margin-top:0rem;text-align: center;margin-top:10px;">SUCCESSFUL</h1>
-    <h5 style="text-align: center;font-size:3.5rem;">Pls copy the number below to the back of your passport before submiting it
-    </h5><h1 style="font-size:20rem; margin:20rem;margin-bottom:0rem;text-align:center;">${newNote.picturepath}</h1>
-    </body></html>`)
+        res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
+   </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
     } //finally {
@@ -221,75 +249,9 @@ app.post("/", upload.single('image'), async(req, res) => {
 
 
 
+
 connectDB().then(() => {
     app.listen(PORT, () => {
         console.log("listening for requests");
     })
 });
-
-
-//server.js
-
-//require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const app = express();
-
-const port = process.env.PORT || 3000;
-
-mongoose
-    .connect("mongodb://localhost:27017/GFGDatabase")
-    .then((err) => {
-
-        console.log("Connected to the database");
-        addDataToMongodb();
-    });
-const data = [{
-        name: "John",
-        class: "GFG"
-    },
-    {
-        name: "Doe",
-        class: "GFG"
-    },
-    {
-        name: "Smith",
-        class: "GFG"
-    },
-    {
-        name: "Peter",
-        class: "GFG"
-    }
-]
-const gfgSchema = new mongoose
-    .Schema({
-        name: { type: String, required: true },
-        class: { type: String, required: true },
-    });
-
-const GFGCollection = mongoose
-    .model("GFGCollection", gfgSchema);
-
-async function addDataToMongodb() {
-    await GFGCollection
-        .deleteMany();
-    await GFGCollection
-        .insertMany(data);
-    console.log("Data added to MongoDB");
-}
-
-app.get('/', async(req, res) => {
-    try {
-        const data = await GFGCollection.find();
-        res.json(data);
-        console.log(data);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("Internal Server Error");
-    }
-});
-
-app
-    .listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
