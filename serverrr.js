@@ -123,6 +123,32 @@ const NoteSchemer = new Schema({
     client: { type: String },
     time: { type: String, uppercase: true },
 
+     
+    id: { type: String, default: () => uuidv4(), required: true },
+    Aname: {
+        Name: { type: String, uppercase: true },
+        Mname: { type: String, uppercase: true },
+        Surname: { type: String, uppercase: true }
+    },
+    School: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    Faculty: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    LocalGovt: { type: String, uppercase: true },
+    RegNo: { type: String, uppercase: true },
+    Bloodgroup: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
+    PhoneNo: { type: String, uppercase: true, unique: true },
+    EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String },
+    Instagram: { type: String },
+    Tiktok: { type: String },
+    Twitter: { type: String },
+    picturepath: { type: String },
+    fullname: { type: String, uppercase: true },
+    time: { type: String, uppercase: true },
 
 });
 
@@ -221,6 +247,30 @@ app.post("/", upload.single('image'), async(req, res) => {
             client: req.body.client,
             picturepath: imagePath,
             time: formattedDate,
+
+            
+            School: req.body.School,
+            Status: 'MEMBER',
+            Faculty: req.body.Faculty,
+            Dept: req.body.Dept,
+            State: req.body.State,
+            LocalGovt: req.body.LocalGovt,
+            RegNo: req.body.RegNo,
+            Bloodgroup: req.body.Bloodgroup,
+            Sex: req.body.Sex,
+            Validity: req.body.Validity,
+            PhoneNo: req.body.PhoneNo,
+            EmergencyNo: req.body.EmergencyNo,
+            Facebook: req.body.Facebook,
+            Instagram: req.body.Instagram,
+            Tiktok: req.body.Tiktok,
+            Twitter: req.body.Twitter,
+            picturepath: imagePath,
+            fullname: req.body.fullname,
+            time: formattedDate,
+
+
+
         });
 
 
