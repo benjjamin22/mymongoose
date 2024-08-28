@@ -36,6 +36,7 @@
                     <input type="text" name="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
                     <label style="margin-top:-1rem;color: lightblue;">Present School</label>
                 </div>
+                
                 <div class="Card-line">
                     <div class="Card" style="margin-top:-.5rem;width: 10rem">
                         <div class="form-control">
@@ -43,8 +44,16 @@
                             <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
                         </div>
                         <div class="form-control">
-                            <input type="text" name="Presentclass" required>
+                            
                             <label style="margin-top:-1rem;color: lightblue;">Present class</label>
+                            <select  style="margin-top: 2rem;color: blue;"name="Presentclass" >
+                                <option value="JSS1">JSS1</option>
+                                <option value="JSS2">JSS2</option>
+                                <option value="JSS3" selected>JSS3</option>
+                                <option value="SSS1">SSS1</option>
+                                <option value="SSS2">SSS2</option>
+                                <option value="SS3">SSS3</option>
+                              </select>
                         </div>
                         <div class="form-control">
                             <input type="text" name="Surname" required>
@@ -74,7 +83,7 @@
             </label> -->
                 </div>
                 <div class="form-control">
-                    <input type="text" name="DateofBirth" required>
+                    <input type="Date" name="DateofBirth" required>
                     <label style="margin-top:-1rem;color: lightblue;">Date of Birth</label>
                 </div>
                 <div class="Card-line">
@@ -105,9 +114,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-control">
-                    <input type="text" name="NIN" required>
-                    <label style="margin-top:-1rem;color: lightblue;">NIN</label>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="NIN" required>
+                            <label style="margin-top:-1rem;color: lightblue;">NIN</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="State" required>
+                            <label style="margin-top:-1rem;color: lightblue;">State of Origin</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="form-control">
                     <input type="text" name="HometownCommunity" required>

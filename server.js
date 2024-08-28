@@ -121,6 +121,7 @@ const NoteSchemer = new Schema({
     HometownCommunity: { type: String, uppercase: true },
     picturepath: { type: String },
     client: { type: String },
+    State: { type: String },
     time: { type: String, uppercase: true },
    
 
@@ -212,6 +213,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             YearofAdmin: req.body.YearofAdmin,
             Presentclass: req.body.Presentclass,
             DateofBirth: req.body.DateofBirth,
+            State: req.body.State,
             Gender: req.body.Gender,
             Bloodgroup: req.body.Bloodgroup,
             ParentPhoneNo: req.body.ParentPhoneNo,
