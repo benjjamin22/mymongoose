@@ -121,7 +121,7 @@ const NoteSchemer = new Schema({
     HometownCommunity: { type: String, uppercase: true },
     picturepath: { type: String },
     client: { type: String },
-    State: { type: String },
+    State: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
    
 
@@ -138,7 +138,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4() + '.JPG';
+    const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
         //name: file.originalname,
