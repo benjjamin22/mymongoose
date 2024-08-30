@@ -121,34 +121,9 @@ const NoteSchemer = new Schema({
     HometownCommunity: { type: String, uppercase: true },
     picturepath: { type: String },
     client: { type: String },
-    time: { type: String, uppercase: true },
-
-     
-    id: { type: String, default: () => uuidv4(), required: true },
-    Aname: {
-        Name: { type: String, uppercase: true },
-        Mname: { type: String, uppercase: true },
-        Surname: { type: String, uppercase: true }
-    },
-    School: { type: String, uppercase: true },
-    Status: { type: String, uppercase: true },
-    Faculty: { type: String, uppercase: true },
-    Dept: { type: String, uppercase: true },
     State: { type: String, uppercase: true },
-    LocalGovt: { type: String, uppercase: true },
-    RegNo: { type: String, uppercase: true },
-    Bloodgroup: { type: String, uppercase: true },
-    Sex: { type: String, uppercase: true },
-    Validity: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, unique: true },
-    EmergencyNo: { type: String, uppercase: true },
-    Facebook: { type: String },
-    Instagram: { type: String },
-    Tiktok: { type: String },
-    Twitter: { type: String },
-    picturepath: { type: String },
-    fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
+   
 
 });
 
@@ -163,7 +138,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4() + '.JPG';
+    const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
         //name: file.originalname,
@@ -238,6 +213,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             YearofAdmin: req.body.YearofAdmin,
             Presentclass: req.body.Presentclass,
             DateofBirth: req.body.DateofBirth,
+            State: req.body.State,
             Gender: req.body.Gender,
             Bloodgroup: req.body.Bloodgroup,
             ParentPhoneNo: req.body.ParentPhoneNo,
@@ -247,30 +223,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             client: req.body.client,
             picturepath: imagePath,
             time: formattedDate,
-
             
-            School: req.body.School,
-            Status: 'MEMBER',
-            Faculty: req.body.Faculty,
-            Dept: req.body.Dept,
-            State: req.body.State,
-            LocalGovt: req.body.LocalGovt,
-            RegNo: req.body.RegNo,
-            Bloodgroup: req.body.Bloodgroup,
-            Sex: req.body.Sex,
-            Validity: req.body.Validity,
-            PhoneNo: req.body.PhoneNo,
-            EmergencyNo: req.body.EmergencyNo,
-            Facebook: req.body.Facebook,
-            Instagram: req.body.Instagram,
-            Tiktok: req.body.Tiktok,
-            Twitter: req.body.Twitter,
-            picturepath: imagePath,
-            fullname: req.body.fullname,
-            time: formattedDate,
-
-
-
         });
 
 
@@ -283,7 +236,7 @@ app.post("/", upload.single('image'), async(req, res) => {
     //fs.unlinkSync(req.file.path); // Clean up the uploaded file
     //}
     //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.HometownCommunity}</h1>
+    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1>
 })
 
 
@@ -294,4 +247,3 @@ connectDB().then(() => {
         console.log("listening for requests");
     })
 });
-
