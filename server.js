@@ -99,7 +99,7 @@ const connectDB = async() => {
 
 
 
-const NoteSchemer = new Schema({   
+const NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
@@ -138,7 +138,7 @@ app.get(["/", "/index.html"], (req, res) => {
 async function uploadImageToGoogleDrive(file) {
     const bufferStream = new stream.PassThrough();
     bufferStream.end(file.buffer);
-    const uuid = uuidv4() + '.JPG';
+    const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
         //name: file.originalname,
@@ -227,6 +227,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             picturepath: imagePath,
             fullname: req.body.fullname,
             time: formattedDate,
+            
         });
 
 
@@ -239,7 +240,7 @@ app.post("/", upload.single('image'), async(req, res) => {
     //fs.unlinkSync(req.file.path); // Clean up the uploaded file
     //}
     //res.json({message: `Post added successfully! Your Post Id is ${newPost.id}`,});
-    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.HometownCommunity}</h1>
+    //res.redirect("/"); <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.EmergencyNo}</h1>
 })
 
 
@@ -250,4 +251,3 @@ connectDB().then(() => {
         console.log("listening for requests");
     })
 });
-
