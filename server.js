@@ -99,31 +99,7 @@ const connectDB = async() => {
 
 
 
-const NoteSchemer = new Schema({
-    id: { type: String, default: () => uuidv4(), required: true },
-    Aname: {
-        Name: { type: String, uppercase: true },
-        Mname: { type: String, uppercase: true },
-        Surname: { type: String, uppercase: true }
-    },
-    Status: { type: String, uppercase: true },
-    School: { type: String, uppercase: true },
-    YearofAdmin: { type: String, uppercase: true },
-    Presentclass: { type: String, uppercase: true },
-    DateofBirth: { type: String, uppercase: true },
-    Gender: { type: String, uppercase: true },
-    Bloodgroup: { type: String, uppercase: true },
-    RegNo: { type: String, uppercase: true },
-    Bloodgroup: { type: String, uppercase: true },
-    ParentPhoneNo: { type: String, uppercase: true },
-    ParentPhoneNo2: { type: String, uppercase: true },
-    NIN: { type: String, uppercase: true, unique: true },
-    HometownCommunity: { type: String, uppercase: true },
-    picturepath: { type: String },
-    client: { type: String },
-    time: { type: String, uppercase: true },
-
-     
+const NoteSchemer = new Schema({   
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
@@ -149,7 +125,6 @@ const NoteSchemer = new Schema({
     picturepath: { type: String },
     fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
-
 });
 
 const Note = mongoose.model("Note", NoteSchemer);
@@ -234,22 +209,6 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Surname: req.body.Surname
             },
             School: req.body.School,
-            Status: 'STUDENT',
-            YearofAdmin: req.body.YearofAdmin,
-            Presentclass: req.body.Presentclass,
-            DateofBirth: req.body.DateofBirth,
-            Gender: req.body.Gender,
-            Bloodgroup: req.body.Bloodgroup,
-            ParentPhoneNo: req.body.ParentPhoneNo,
-            ParentPhoneNo2: req.body.ParentPhoneNo2,
-            NIN: req.body.NIN,
-            HometownCommunity: req.body.HometownCommunity,
-            client: req.body.client,
-            picturepath: imagePath,
-            time: formattedDate,
-
-            
-            School: req.body.School,
             Status: 'MEMBER',
             Faculty: req.body.Faculty,
             Dept: req.body.Dept,
@@ -268,9 +227,6 @@ app.post("/", upload.single('image'), async(req, res) => {
             picturepath: imagePath,
             fullname: req.body.fullname,
             time: formattedDate,
-
-
-
         });
 
 
