@@ -116,7 +116,7 @@ const NoteSchemer = new Schema({
     Bloodgroup: { type: String, uppercase: true },
     Sex: { type: String, uppercase: true },
     Validity: { type: String, uppercase: true },
-    PhoneNo: { type: String, uppercase: true, unique: true },
+    PhoneNo: { type: String, uppercase: true, },
     EmergencyNo: { type: String, uppercase: true },
     Facebook: { type: String },
     Instagram: { type: String },
