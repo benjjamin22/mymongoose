@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-//const autoIncrement = require("mongoose-auto-increment");
+const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 
@@ -99,7 +99,7 @@ const connectDB = async() => {
     }
 }
 
-//autoIncrement.initialize(connectDB);
+//utoIncrement.initialize(mongoose.connection);
 
 const NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
@@ -127,9 +127,22 @@ const NoteSchemer = new Schema({
     picturepath: { type: String },
     fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
-});
+    field: { type: Number},
+    
+},
+{ field: false},);
 
-//NoteSchemer.plugin(autoIncrement.plugin,{ model:'note',field:'dataid'});
+NoteSchemer.plugin(autoIncrement, {inc_field:'field'})
+//NoteSchemer.pre('save',function(){this.field = Math.round((Math.random()*10000000) + 1);});
+//NoteSchemer.pre('save',function(next){
+    //mongoose.model('Note',NoteSchemer).countDocuments(function(error,count){
+       // if(error) return next(error);
+        //this.field = count +1;
+        //next();
+    //});
+//})
+
+ //NoteSchemer.plugin(autoIncrement.plugin,{ model:'note',field:'dataid'});
 
 const Note = mongoose.model("Note", NoteSchemer);
 
