@@ -163,7 +163,7 @@ const NoteSchemer = new Schema({
 //})
 NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
 
-const mute = mongoose.model("mute", NoteSchemer);
+const Note = mongoose.model("Note", NoteSchemer);
 
 //mute.counterReset('id', (err) =>{
   //console.log(err)
@@ -242,7 +242,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
 
-        let newNote = new mute({
+        let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
