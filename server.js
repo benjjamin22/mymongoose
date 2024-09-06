@@ -127,8 +127,7 @@ const NoteSchemer = new Schema({
     
     
 },
-{ id: false},
-);
+{ id: false},);
 
 //NoteSchemer.pre('save', function(next) {
 
