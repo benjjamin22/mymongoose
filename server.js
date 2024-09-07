@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-//const autoIncrement = require("mongoose-sequence")(mongoose);
+const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 //function keepServerAwaike() {
@@ -100,8 +100,8 @@ const connectDB = async() => {
 
 
 
-const NoteSchemer = new Schema({
-    id: { type: String, default: () => uuidv4(), required: true },
+var NoteSchemer = new Schema({
+    field: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -123,14 +123,14 @@ const NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    time: { type: String, uppercase: true },
-});
+    time: { type: String, uppercase: true }
+},
+{ id: false},);
+
+NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
 
 
-
-//NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
-
-const Note = mongoose.model("Note", NoteSchemer);
+var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
 
