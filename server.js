@@ -13,6 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
+const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 
@@ -123,6 +124,7 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
+<<<<<<< HEAD
     id: { type: String, uppercase: true },
     time: { type: String, uppercase: true }
 });
@@ -134,6 +136,15 @@ NoteSchemer.pre("save", function(next) {
             next();
         });
 });
+=======
+    time: { type: String, uppercase: true }
+},
+{ id: false},);
+
+NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
+
+
+>>>>>>> 49fa52318c25e585ce7eebbf7a9eb415fc49fb6c
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
