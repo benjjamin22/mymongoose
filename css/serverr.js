@@ -16,6 +16,7 @@ const stream = require("stream");
 const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
+
 //function keepServerAwaike() {
 //  http.get('https://mymongoose.onrender.com', (res) => {
 //    console.log(`Status Code: ${res.statusCode}`);
@@ -98,77 +99,52 @@ const connectDB = async() => {
     }
 }
 
-
+//utoIncrement.initialize(mongoose.connection);
 
 const NoteSchemer = new Schema({
-    field: { type: String, default: () => uuidv4(), required: true },
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
-    Status: { type: String, uppercase: true },
     School: { type: String, uppercase: true },
-    YearofAdmin: { type: String, uppercase: true },
-    Presentclass: { type: String, uppercase: true },
-    DateofBirth: { type: String, uppercase: true },
-    Gender: { type: String, uppercase: true },
-    Bloodgroup: { type: String, uppercase: true },
+    Status: { type: String, uppercase: true },
+    Faculty: { type: String, uppercase: true },
+    Dept: { type: String, uppercase: true },
+    State: { type: String, uppercase: true },
+    LocalGovt: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
-    ParentPhoneNo: { type: String, uppercase: true },
-    ParentPhoneNo2: { type: String, uppercase: true },
-    NIN: { type: String, uppercase: true, unique: true },
-    HometownCommunity: { type: String, uppercase: true },
+    Sex: { type: String, uppercase: true },
+    Validity: { type: String, uppercase: true },
+    PhoneNo: { type: String, uppercase: true, },
+    EmergencyNo: { type: String, uppercase: true },
+    Facebook: { type: String },
+    Instagram: { type: String },
+    Tiktok: { type: String },
+    Twitter: { type: String },
     picturepath: { type: String },
-    client: { type: String },
-    State: { type: String, uppercase: true },
+    fullname: { type: String, uppercase: true },
     time: { type: String, uppercase: true },
-    
+    field: { type: Number},
     
 },
-{ id: false},
-);
+{ field: false},);
 
-//NoteSchemer.pre('save', function(next) {
-
-//var doc = this;
-
-//Retrieve last value of caseStudyNo
-//mute.findOne({},{},{sort: { 'id' :-1}}, function(error, counter)   {
-//if documents are present in collection then it will increment caseStudyNo 
-// else it will create a new documents with default values 
- 
-    //if(counter){
-      //counter.id++;
-      //doc.id=counter.id;
-    //}
-   // next();
- //});
-//});
-// module.exports allows us to pass this to other files when it is called
-// create the model for users and expose it to our app
-//const CaseStudy = mongoose.model('CaseStudy', caseStudySchema);
-//module.exports = CaseStudy;
-
+NoteSchemer.plugin(autoIncrement, {inc_field:'field'})
+//NoteSchemer.pre('save',function(){this.field = Math.round((Math.random()*10000000) + 1);});
 //NoteSchemer.pre('save',function(next){
-   //var doc = this;
-    //if(this.isNew){
-        //mute.count().then(res=>{
-           //this.id=res;
-            //next()
-        //})
-    //} else {
-       //next();
-    //}
+    //mongoose.model('Note',NoteSchemer).countDocuments(function(error,count){
+       // if(error) return next(error);
+        //this.field = count +1;
+        //next();
+    //});
 //})
-NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
 
-const mute = mongoose.model("mute", NoteSchemer);
+ //NoteSchemer.plugin(autoIncrement.plugin,{ model:'note',field:'dataid'});
 
-//mute.counterReset('id', (err) =>{
-  //console.log(err)
-//});
+const Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -243,26 +219,30 @@ app.post("/", upload.single('image'), async(req, res) => {
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
 
-        let newNote = new mute({
+        let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
                 Surname: req.body.Surname
             },
             School: req.body.School,
-            Status: 'STUDENT',
-            YearofAdmin: req.body.YearofAdmin,
-            Presentclass: req.body.Presentclass,
-            DateofBirth: req.body.DateofBirth,
+            Status: 'MEMBER',
+            Faculty: req.body.Faculty,
+            Dept: req.body.Dept,
             State: req.body.State,
-            Gender: req.body.Gender,
+            LocalGovt: req.body.LocalGovt,
+            RegNo: req.body.RegNo,
             Bloodgroup: req.body.Bloodgroup,
-            ParentPhoneNo: req.body.ParentPhoneNo,
-            ParentPhoneNo2: req.body.ParentPhoneNo2,
-            NIN: req.body.NIN,
-            HometownCommunity: req.body.HometownCommunity,
-            client: req.body.client,
+            Sex: req.body.Sex,
+            Validity: req.body.Validity,
+            PhoneNo: req.body.PhoneNo,
+            EmergencyNo: req.body.EmergencyNo,
+            Facebook: req.body.Facebook,
+            Instagram: req.body.Instagram,
+            Tiktok: req.body.Tiktok,
+            Twitter: req.body.Twitter,
             picturepath: imagePath,
+            fullname: req.body.fullname,
             time: formattedDate,
             
         });

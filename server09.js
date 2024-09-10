@@ -100,7 +100,7 @@ const connectDB = async() => {
 
 
 
-const NoteSchemer = new Schema({
+var NoteSchemer = new Schema({
     field: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
@@ -123,52 +123,14 @@ const NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    time: { type: String, uppercase: true },
-    
-    
+    time: { type: String, uppercase: true }
 },
-{ id: false},
-);
+{ id: false},);
 
-//NoteSchemer.pre('save', function(next) {
-
-//var doc = this;
-
-//Retrieve last value of caseStudyNo
-//mute.findOne({},{},{sort: { 'id' :-1}}, function(error, counter)   {
-//if documents are present in collection then it will increment caseStudyNo 
-// else it will create a new documents with default values 
- 
-    //if(counter){
-      //counter.id++;
-      //doc.id=counter.id;
-    //}
-   // next();
- //});
-//});
-// module.exports allows us to pass this to other files when it is called
-// create the model for users and expose it to our app
-//const CaseStudy = mongoose.model('CaseStudy', caseStudySchema);
-//module.exports = CaseStudy;
-
-//NoteSchemer.pre('save',function(next){
-   //var doc = this;
-    //if(this.isNew){
-        //mute.count().then(res=>{
-           //this.id=res;
-            //next()
-        //})
-    //} else {
-       //next();
-    //}
-//})
 NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
 
-const mute = mongoose.model("mute", NoteSchemer);
 
-//mute.counterReset('id', (err) =>{
-  //console.log(err)
-//});
+var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -243,7 +205,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
 
-        let newNote = new mute({
+        let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
