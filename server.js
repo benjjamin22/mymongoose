@@ -13,9 +13,6 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const autoIncrement = require("mongoose-sequence")(mongoose);
-
-
 
 //function keepServerAwaike() {
 //  http.get('https://mymongoose.onrender.com', (res) => {
@@ -102,7 +99,7 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
-    field: { type: String, default: () => uuidv4(), required: true },
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -124,27 +121,18 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-<<<<<<< HEAD
-    id: { type: String, uppercase: true },
+    sn: { type: String, uppercase: true },
     time: { type: String, uppercase: true }
 });
 NoteSchemer.pre("save", function(next) {
     var docs = this;
     mongoose.model('Note', NoteSchemer).countDocuments()
         .then(function(counter) {
-            docs.id = counter + 1;
+            docs.sn = counter + 1;
             next();
         });
 });
-=======
-    time: { type: String, uppercase: true }
-},
-{ id: false},);
 
-NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
-
-
->>>>>>> 49fa52318c25e585ce7eebbf7a9eb415fc49fb6c
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
