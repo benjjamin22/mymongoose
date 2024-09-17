@@ -211,14 +211,14 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-        //let _id_counter = 0
-            //function id() {
-           // return (_id_counter++).toString(36) + Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(36)
-            //}
-            //var uuid = id()
+        let _id_counter = 0
+            function ud() {
+           return (_id_counter++).toString(36)
+            }
+            const ud = ud()
         
             
-            const uuid = nanoid(8)
+            const uuid = nanoid(8)`${ud}`
         
         let newNote = new Note({
             Aname: {
