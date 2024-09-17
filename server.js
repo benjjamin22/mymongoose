@@ -213,13 +213,13 @@ app.post("/", upload.single('image'), async(req, res) => {
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         let _id_counter = 0
             function ud() {
-           const ud = (_id_counter++).toString(36)
-                const uuido = nanoid(8) + ud
+           const ud = (_id_counter++).toString(36) + nanoid(10)
+                //const uuido = nanoid(8) + ud
             }
-            const ud = ud()
+            const uiud = ud()
         
             
-            const uuid = uuido
+            //const uuid = uuido
             
         let newNote = new Note({
             Aname: {
