@@ -216,10 +216,10 @@ app.post("/", upload.single('image'), async(req, res) => {
            const ud = (_id_counter++).toString(36) + nanoid(10)
                 //const uuido = nanoid(8) + ud
             }
-            const uiud = ud
+            const uuid = ud
         
             
-            //const uuid = uuido
+           // const uuid = nanoid(8)
             
         let newNote = new Note({
             Aname: {
