@@ -215,7 +215,7 @@ app.post("/", upload.single('image'), async(req, res) => {
            // return (_id_counter++).toString(36) + Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(36)
             //}
             //var uuid = id()
-            const uuid = nanoid(6)
+            const uuid = nanoid(8)
         let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
