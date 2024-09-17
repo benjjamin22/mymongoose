@@ -216,10 +216,9 @@ app.post("/", upload.single('image'), async(req, res) => {
             //}
             //var uuid = id()
         let _id_counter = 0
-            function id() {
-            const uid = nanoid(8)+(_id_counter++).toString(36)
-            }
-        var uuid = id()
+            
+            const uuid = nanoid(8)+(_id_counter++).toString(36)
+        
         let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
