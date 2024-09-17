@@ -137,15 +137,6 @@ NoteSchemer.pre("save", function(next) {
             next();
         });
 });
-const uuuid = nanoid(8)
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.id = counter + 1 + uuuid;
-            next();
-        });
-});
 
 var Note = mongoose.model("Note", NoteSchemer);
 
@@ -227,7 +218,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             //var uuid = id()
         
             
-            
+            const uuid = nanoid(8)
         
         let newNote = new Note({
             Aname: {
@@ -249,7 +240,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            
+            id: uuid,
             time: formattedDate            
         });
 
