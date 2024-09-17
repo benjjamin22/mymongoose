@@ -13,10 +13,13 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
+<<<<<<< HEAD
 const {nanoid} = require("nanoid");
 //const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
+=======
+>>>>>>> 3d32fffa194cd2246ecdf286f829664e83617ca2
 
 //function keepServerAwaike() {
 //  http.get('https://mymongoose.onrender.com', (res) => {
@@ -103,8 +106,12 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
+<<<<<<< HEAD
     id: { type: String, required: true },
     uuid: { type: String, default: () => uuidv4(), required: true },
+=======
+    id: { type: String, default: () => uuidv4(), required: true },
+>>>>>>> 3d32fffa194cd2246ecdf286f829664e83617ca2
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -137,6 +144,10 @@ NoteSchemer.pre("save", function(next) {
             next();
         });
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3d32fffa194cd2246ecdf286f829664e83617ca2
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
