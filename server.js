@@ -13,7 +13,8 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const autoIncrement = require("mongoose-sequence")(mongoose);
+const {nanoid} = require("nanoid");
+//const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 
@@ -102,7 +103,8 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
-    field: { type: String, default: () => uuidv4(), required: true },
+    id: { type: String, required: true },
+    uuid: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -124,27 +126,17 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-<<<<<<< HEAD
-    id: { type: String, uppercase: true },
+    sn: { type: String, uppercase: true },
     time: { type: String, uppercase: true }
 });
 NoteSchemer.pre("save", function(next) {
     var docs = this;
     mongoose.model('Note', NoteSchemer).countDocuments()
         .then(function(counter) {
-            docs.id = counter + 1;
+            docs.sn = counter + 1;
             next();
         });
 });
-=======
-    time: { type: String, uppercase: true }
-},
-{ id: false},);
-
-NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
-
-
->>>>>>> 49fa52318c25e585ce7eebbf7a9eb415fc49fb6c
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -218,8 +210,12 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-
+        //let _id_counter = 0
+            //function id() {
+           // return (_id_counter++).toString(36) + Math.floor(Math.random() * Number.MAX_SAFE_INTEGER).toString(36)
+            //}
+            //var uuid = id()
+            const uuid = nanoid(6)
         let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
@@ -240,8 +236,8 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            time: formattedDate,
-            
+            id: uuid,
+            time: formattedDate            
         });
 
 
