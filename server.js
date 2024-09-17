@@ -212,11 +212,11 @@ app.post("/", upload.single('image'), async(req, res) => {
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         let _id_counter = 0
-            function ud() {
+            function uytd() {
            const ud = (_id_counter++).toString(36) + nanoid(10)
                 //const uuido = nanoid(8) + ud
             }
-            const uiud = ud()
+            const uiud = ud
         
             
             //const uuid = uuido
