@@ -126,7 +126,7 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    sn: { type: String, uppercase: true },
+    sn: { type: Number },
     time: { type: String, uppercase: true }
 });
 NoteSchemer.pre("save", function(next) {
