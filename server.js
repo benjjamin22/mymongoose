@@ -171,6 +171,9 @@ async function uploadImageToGoogleDrive(file) {
 }
 
 app.get('/detail', async(req, res) => {
+  res.header('Access-Control-Allow-Origin', 'https://www.mydatabase.com.ng/NUASA(IMSU)');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     try {
         const data = await Note.find();
         res.json(data);
