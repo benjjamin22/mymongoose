@@ -103,8 +103,8 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
-    id: { type: String, required: true },
-    uuid: { type: String, default: () => uuidv4(), required: true },
+    password: { type: String, required: true },
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -241,13 +241,14 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            id: uuid,
+            password: uuid,
             time: formattedDate            
         });
 
 
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
+            <h1 style="font-size:6rem; margin-top:8rem;text-align: center;">YOUR PIN IS ${password}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
