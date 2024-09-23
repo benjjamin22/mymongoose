@@ -248,7 +248,7 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
-            <h1 style="font-size:6rem; margin-top:8rem;text-align: center;">YOUR PIN IS ${password}</h1>
+            <h1 style="font-size:6rem; margin-top:8rem;text-align: center;">YOUR PIN IS:- ${newNote.password}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
