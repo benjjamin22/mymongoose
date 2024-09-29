@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const {nanoid} = require("nanoid");
+//const {nanoid} = require("nanoid");
 //const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
@@ -219,7 +219,7 @@ app.post("/", upload.single('image'), async(req, res) => {
            // const uuid = ud
         
             
-            const uuid = nanoid(8)
+            //const uuid = nanoid(8)
             
         let newNote = new Note({
             Aname: {
