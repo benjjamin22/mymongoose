@@ -13,9 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-//const {nanoid} = require("nanoid");
-//const autoIncrement = require("mongoose-sequence")(mongoose);
-
+const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 //function keepServerAwaike() {
@@ -102,9 +100,8 @@ const connectDB = async() => {
 
 
 
-var NoteSchemer = new Schema({
-    password: { type: String, required: true },
-    id: { type: String, default: () => uuidv4(), required: true },
+const NoteSchemer = new Schema({
+    field: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
@@ -126,19 +123,52 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    sn: { type: Number },
-    time: { type: String, uppercase: true }
-});
-NoteSchemer.pre("save", function(next) {
-    var docs = this;
-    mongoose.model('Note', NoteSchemer).countDocuments()
-        .then(function(counter) {
-            docs.sn = counter + 1;
-            next();
-        });
-});
+    time: { type: String, uppercase: true },
+    
+    
+},
+{ id: false},
+);
 
-var Note = mongoose.model("Note", NoteSchemer);
+//NoteSchemer.pre('save', function(next) {
+
+//var doc = this;
+
+//Retrieve last value of caseStudyNo
+//mute.findOne({},{},{sort: { 'id' :-1}}, function(error, counter)   {
+//if documents are present in collection then it will increment caseStudyNo 
+// else it will create a new documents with default values 
+ 
+    //if(counter){
+      //counter.id++;
+      //doc.id=counter.id;
+    //}
+   // next();
+ //});
+//});
+// module.exports allows us to pass this to other files when it is called
+// create the model for users and expose it to our app
+//const CaseStudy = mongoose.model('CaseStudy', caseStudySchema);
+//module.exports = CaseStudy;
+
+//NoteSchemer.pre('save',function(next){
+   //var doc = this;
+    //if(this.isNew){
+        //mute.count().then(res=>{
+           //this.id=res;
+            //next()
+        //})
+    //} else {
+       //next();
+    //}
+//})
+NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
+
+const mute = mongoose.model("mute", NoteSchemer);
+
+//mute.counterReset('id', (err) =>{
+  //console.log(err)
+//});
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -211,17 +241,9 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-       // let _id_counter = 0
-           // function uytd() {
-           //=const ud = (_id_counter++).toString(36) + nanoid(10)
-                //const uuido = nanoid(8) + ud
-          //  }
-           // const uuid = ud
-        
-            
-            //const uuid = nanoid(8)
-            
-        let newNote = new Note({
+
+
+        let newNote = new mute({
             Aname: {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
@@ -241,14 +263,13 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            password: uuid,
-            time: formattedDate            
+            time: formattedDate,
+            
         });
 
 
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
-            <h1 style="font-size:6rem; margin-top:8rem;text-align: center;">YOUR PIN IS:- ${newNote.password}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
