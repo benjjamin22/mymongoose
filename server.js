@@ -103,7 +103,6 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
-   
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
@@ -241,7 +240,6 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-          
             time: formattedDate            
         });
 
