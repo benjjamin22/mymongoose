@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const autoIncrement = require("mongoose-sequence")(mongoose);
+//const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 //function keepServerAwaike() {
@@ -124,10 +124,9 @@ var NoteSchemer = new Schema({
     client: { type: String },
     State: { type: String, uppercase: true },
     time: { type: String, uppercase: true }
-},
-{ id: false},);
+});
 
-NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
+//NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
 
 
 var Note = mongoose.model("Note", NoteSchemer);
