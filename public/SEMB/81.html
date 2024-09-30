@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/public/style.css" />
+    <title>ISIEKENESI HIGH SCH</title>
+</head>
+
+<body>
+
+    <div class="container">
+            <div class="cont">
+                <img class="flip" style="height: 90px;
+                width: 90px;
+                border-radius: 50px;
+                margin-top: -30px;
+                justify-content: center;
+                position: relative;
+                margin: auto;
+                column-gap: 0rem;
+                text-align: center;
+                margin-left: 37%;
+                " src="./btn.jpg" alt="">
+             <h1 style="font-size: 24px;"> IMO STATE GOVERNMENT</h1>
+                <h1 style="margin-top:1.5rem;font-size: 25px;">MINISTRY OF EDUCATION</h1>
+                <div class="text">
+                    <p>SECONDARY EDUCATION MANAGEMENT BOARD </p>
+                    <p style="color:yellow;">UNIFIED IMO STATE SECONDARY SCHOOL </p>
+                    <p style="color:yellow;margin-bottom: 1rem;">STUDENTS IDENTITY CARD PROJECT</p>
+                </div>
+            <form method="post" action="/" enctype="multipart/form-data">
+                <div class="form-control">
+                    <input type="text" name="School" value="ISIEKENESI HIGH SCH" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">Present School</label>
+                </div>
+                <div class="Card-line">
+                    <div class="Card" style="margin-top:-.5rem;width: 10rem">
+                        <div class="form-control">
+                            <input type="text" name="YearofAdmin" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
+                        </div>
+                        <div class="form-control">
+                            <label style="margin-top:-1rem;color: lightblue;">Present class</label>
+                            <select  style="margin-top: 1.5rem;color: blue;width: 5rem; height: 1.5rem;"name="Presentclass" required >
+                                <option  selected></option>
+                                <option value="JSS1">JSS1</option>
+                                <option value="JSS2">JSS2</option>
+                                <option value="JSS3">JSS3</option>
+                                <option value="SSS1">SSS1</option>
+                                <option value="SSS2">SSS2</option>
+                                <option value="SS3">SSS3</option>
+                              </select>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="Surname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" name="Mname" required>
+                            <label style="margin-top:-1rem;color: lightblue;width: 100%;">Middle Name</label>
+                        </div>
+                    </div>
+                    <div class="upload-box" id="upload-box" style="margin-top: 0rem;height: 13.5rem;width: 10rem;margin-left: -.5rem;">
+                        <span>Click to upload an image</span>
+                        <img id="uploaded-image" src="#" alt="Uploaded Image">
+                    </div>
+                    <input type="file" id="file-input" accept="image/*" name="image">
+                </div>
+
+                <div class="form-control" style="margin-top:-.1rem;">
+                    <input type="text" name="Name" required>
+                    <label style="margin-top:-1rem;color: lightblue;">First Name</label>
+                    <!-- <label style="margin-top:-1rem;color: lightblue;">
+            <span style="transition-delay: 0ms">E</span>
+              <span style="transition-delay: 50ms">m</span>
+              <span style="transition-delay: 100ms">a</span>
+              <span style="transition-delay: 150ms">i</span>
+              <span style="transition-delay: 200ms">l</span>
+            </label> -->
+                </div>
+                <div class="form-control">
+                    <input type="text" name="DateofBirth" required>
+                    <label style="margin-top:-1rem;color: lightblue;">Date of Birth</label>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="Gender" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Gender</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="Bloodgroup" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Blood Grp</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="ParentPhoneNo" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Parent Phone No</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="ParentPhoneNo2" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Parent Phone No2</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="NIN" required>
+                            <label style="margin-top:-1rem;color: lightblue;">NIN</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" name="State" required>
+                            <label style="margin-top:-1rem;color: lightblue;">State of Origin</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <input type="text" name="HometownCommunity" required>
+                    <label style="margin-top:-1rem;color: lightblue;">Hometown/Community</label>
+                </div>
+                <div class="form-control">
+                    <input type="text" name="client" value="VEENATE COMMUNICATION VENTURES" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">CLIENT</label>
+                </div>
+        </div>
+        <button class="btn" type="submit">SUBMIT</button>
+        </form>
+    </div>
+    </div>
+    <script>
+        window.addEventListener("pageshow", function(event) {
+            var historyTraversal = event.persisted,
+                perf = window.performance,
+                perfEntries = perf && perf.getEntriesByType && perf.getEntriesByType("navigation"),
+                perfEntryType = perfEntries && perfEntries[0] && perfEntries[0].type,
+                navigationType = perf && perf.navigation && perf.navigation.type;
+            if (
+                historyTraversal || perfEntryType === "back_forward" || navigationType === 2
+            ) {
+                window.location.reload();
+            }
+        })
+
+        const uploadBox = document.getElementById('upload-box');
+        const fileInput = document.getElementById('file-input');
+        const uploadedImage = document.getElementById('uploaded-image');
+
+        uploadBox.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    uploadedImage.src = e.target.result;
+                    uploadedImage.style.display = 'block';
+                    uploadBox.querySelector('span').style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+    <script src="public/script.js"></script>
+
+</body>
+
+</html>

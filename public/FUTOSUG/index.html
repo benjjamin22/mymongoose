@@ -20,67 +20,12 @@
                 <p>as you cant submit twice</p>
             </div>
             <form method="post" action="/" enctype="multipart/form-data">
-                <div class="Card-line">
-                    <div class="Card">
-                        <div class="form-control">
-                            <label style="margin-top:-1rem;color: lightblue;">First Name</label>
-                            <input style="width: 10.3rem;" type="text" name="Name" required>
-                        </div>
-                        <div class="form-control">
-                            <input style="width: 10.3rem;" type="text" name="Mname" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Middle Name</label>
-                        </div>
-                        <div class="form-control">
-                            <input input style="width: 10.3rem;" type="text" name="Surname" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
-                        </div>
-                        <div class="form-control">
-                            <input style="width: 10.3rem;" type="text" name="School" value="FUTO SUG" readonly>
-                            <label style="margin-top:-1rem;color: lightblue;">School</label>
-                        </div>
-                    </div>
-                    <div class="upload-box" id="upload-box" style="margin-top: 1.5rem;height: 12.5rem;width: 12rem;">
-                        <span>Click to upload an image</span>
-                        <img id="uploaded-image" src="#" alt="Uploaded Image">
-                    </div>
-                    <input type="file" id="file-input" accept="image/*" name="image">
+                <div class="upload-box" id="upload-box" style="margin-top: 1.5rem;height: 12.5rem;width: 12rem;">
+                    <span>Click to upload an image</span>
+                    <img id="uploaded-image" src="#" alt="Uploaded Image">
                 </div>
-                <div class="form-control" style="margin-top: 0rem;">
-                    <input type="text" name="Faculty" required>
-                    <label style="margin-top:-1rem;color: lightblue;">faculty</label>
-                </div>
-                <div class="form-control">
-                    <input type="text" name="Dept" required>
-                    <label style="margin-top:-1rem;color: lightblue;">Dept</label>
-                </div>
-                <div class="Card-line">
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="PhoneNo" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Phone No</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="EmergencyNo">
-                            <label style="margin-top:-1rem;color: lightblue;">Emergency No.</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="Card-line">
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="RegNo" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Reg No.</label>
-                        </div>
-                    </div>
-                    <div class="Card">
-                        <div class="form-control">
-                            <input type="text" name="Validity" required>
-                            <label style="margin-top:-1rem;color: lightblue;">Validity</label>
-                        </div>
-                    </div>
-                </div>
+                <input type="file" id="file-input" multiple accept="image/*" name="image">
+
                 <button class="btn" type="submit">SUBMIT</button>
             </form>
         </div>
