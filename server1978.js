@@ -13,6 +13,8 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
+//const {nanoid} = require("nanoid");
+//const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
 
@@ -101,6 +103,7 @@ const connectDB = async() => {
 
 
 var NoteSchemer = new Schema({
+   
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
@@ -134,6 +137,7 @@ NoteSchemer.pre("save", function(next) {
             next();
         });
 });
+
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
@@ -207,8 +211,16 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-
-
+       // let _id_counter = 0
+           // function uytd() {
+           //=const ud = (_id_counter++).toString(36) + nanoid(10)
+                //const uuido = nanoid(8) + ud
+          //  }
+           // const uuid = ud
+        
+            
+        //const uuid = nanoid(8)
+            
         let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
@@ -229,13 +241,15 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            time: formattedDate,
-            
+          
+            time: formattedDate            
         });
 
 
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
+           <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.Aname.Name}${newNote.Aname.Mname}${newNote.Aname.Surname}</h1>
+           <h1 style="font-size:5rem; margin-top:0rem;text-align: center;">${newNote.NIN}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
