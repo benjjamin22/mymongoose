@@ -98,7 +98,12 @@
         
 
         const db = getDatabase();
-var School = document.querySelector("#School")
+        var School = document.querySelector("#School");
+        var YearofAdmin = document.querySelector("#YearofAdmin");
+        var Presentclass = document.querySelector("#Presentcladd");
+        var Surname = document.querySelector("#Surname");
+        var Name = document.querySelector("#Name");
+        var Mname = document.querySelector("#Mname");
         var enterID = document.querySelector("#enterID");
         var enterName = document.querySelector("#enterName");
         var enterAge = document.querySelector("#enterAge");
@@ -115,6 +120,11 @@ var School = document.querySelector("#School")
         function InsertData() {
             set(ref(db, "People/"+ enterID.value),{
                 School : School.value,
+                YearofAdmin : YearofAdmin.value,
+                Presentclass : Presentclass.value,
+                Surname  : Surname.value,
+                Name : Name.value,
+                Mname : Mname.value,
                 Name: enterName.value,
                 ID: enterID.value,
                 Age: enterAge.value
