@@ -100,7 +100,9 @@ const connectDB = async() => {
     }
 }
 
-const pin = customAlphabet('161234567890ABCDEFGHJKXTUVELMNPW', 10)
+const nanoid = customAlphabet('161234567890ABCDEFGHJKXTUVELMNPW', 10);
+const pin = nanoid()
+
 var NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
