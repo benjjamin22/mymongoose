@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const { customAlphabet } = require("nanoid");
+//const { customAlphabet } = require("nanoid");
 //const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
@@ -137,24 +137,6 @@ NoteSchemer.pre("save", function(next) {
             next();
         });
 });
-
-NoteSchemer.pre('save', async function (next) {
-  if (this.isNew) {
-    const nanoid = customAlphabet('1234567890ABCDEFGHMNPRTUVWXYZ', 10)
-    let unique = true
-    let id = ''
-    while (unique) {
-      id = await nanoid()
-      const user = await NoteSchemer.findOne({ pin: id })
-      if (!user) {
-        unique = false
-      }
-    }
-    this.pin = id
-  }
-  next()
-})
-
 var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
