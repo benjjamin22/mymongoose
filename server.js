@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const { State: { type: String, uppercase: true }, } = require("nanoid");
+const { customAlphabet } = require("nanoid");
 //const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
