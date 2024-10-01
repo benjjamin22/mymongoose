@@ -13,7 +13,7 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-//const { customAlphabet } = require("nanoid");
+const { State: { type: String, uppercase: true }, } = require("nanoid");
 //const autoIncrement = require("mongoose-sequence")(mongoose);
 
 
@@ -100,14 +100,7 @@ const connectDB = async() => {
     }
 }
 
-const idChars = 'ABCDEFGHJKMNPQRSTUVWXYZ'
-
-function generateId() {
-  let pini = ''
-  for (let i = 0; i < 6; i++) id += idChars[Math.floor(Math.random() * idChars.length)]
-  return pini
-}
-const pin = pini
+const pin = customAlphabet(16)
 var NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
