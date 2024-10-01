@@ -16,7 +16,10 @@
 <body>
     <div id="enterDetails">
         <h1>Enter details</h1>
-
+                <div class="form-control">
+                    <input type="text" id="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">Present School</label>
+                </div>
         <h4>ID</h4> 
         <input id="enterID" type="text"> 
 
@@ -69,7 +72,7 @@
         
 
         const db = getDatabase();
-
+var School = document.querySelector("#School")
         var enterID = document.querySelector("#enterID");
         var enterName = document.querySelector("#enterName");
         var enterAge = document.querySelector("#enterAge");
@@ -85,6 +88,7 @@
 
         function InsertData() {
             set(ref(db, "People/"+ enterID.value),{
+                School ; School.value,
                 Name: enterName.value,
                 ID: enterID.value,
                 Age: enterAge.value
