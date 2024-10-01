@@ -126,7 +126,7 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    pin: { type: String, uppercase: true },
+    pin: customAlphabet('161234567890ABCDEFGHJKXTUVELMNPW', 10),
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
