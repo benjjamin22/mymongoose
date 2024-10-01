@@ -140,13 +140,8 @@
         </div>
     </div>
 </div>
+    <script type="module">
     
-<script type="module">
-        //THIS IS WHERE YOU PASTE THE CODE TO CONNECT TO YOUR OWN DATABASE
-        //Copy and paste the CDN bit of code from your app that you created on Firebase.
-        //The script tag above is already there, so careful not to have duplicate script tags.
-        //After you've copied and pasted, just delete the unnecessary script tags. 
-   
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -166,8 +161,9 @@
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
 
-
-        import {getDatabase, ref, get, set, child, update, remove} from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";//Copy and Paste the URL from near the top of the CDN you pasted in from firebase
+        import {getDatabase, ref, get, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+    //Copy and Paste the URL from near the top of the CDN you pasted in from firebase
         // (the one where you imported "initializeApp" from),
         //but change "firebase-app" to "firebase-database"
         
