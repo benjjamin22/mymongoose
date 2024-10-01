@@ -33,18 +33,18 @@
                 </div>
             <form method="post" action="/" enctype="multipart/form-data">
                 <div class="form-control">
-                    <input type="text" name="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
+                    <input type="text" id="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
                     <label style="margin-top:-1rem;color: lightblue;">Present School</label>
                 </div>
                 <div class="Card-line">
                     <div class="Card" style="margin-top:-.5rem;width: 10rem">
                         <div class="form-control">
-                            <input type="text" name="YearofAdmin" required>
+                            <input type="text" id="YearofAdmin" required>
                             <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
                         </div>
                         <div class="form-control">
                             <label style="margin-top:-1rem;color: lightblue;">Present class</label>
-                            <select  style="margin-top: 1.5rem;color: blue;width: 5rem; height: 1.5rem;"name="Presentclass" required >
+                            <select  style="margin-top: 1.5rem;color: blue;width: 5rem; height: 1.5rem;"id="Presentclass" required >
                                 <option  selected></option>
                                 <option value="JSS1">JSS1</option>
                                 <option value="JSS2">JSS2</option>
@@ -55,11 +55,11 @@
                               </select>
                         </div>
                         <div class="form-control">
-                            <input type="text" name="Surname" required>
+                            <input type="text" id="Surname" required>
                             <label style="margin-top:-1rem;color: lightblue;">Surname</label>
                         </div>
                         <div class="form-control">
-                            <input type="text" name="Mname" required>
+                            <input type="text" id="Mname" required>
                             <label style="margin-top:-1rem;color: lightblue;width: 100%;">Middle Name</label>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                 </div>
 
                 <div class="form-control" style="margin-top:-.1rem;">
-                    <input type="text" name="Name" required>
+                    <input type="text" id="Name" required>
                     <label style="margin-top:-1rem;color: lightblue;">First Name</label>
                     <!-- <label style="margin-top:-1rem;color: lightblue;">
             <span style="transition-delay: 0ms">E</span>
@@ -82,19 +82,19 @@
             </label> -->
                 </div>
                 <div class="form-control">
-                    <input type="text" name="DateofBirth" required>
+                    <input type="text" id="DateofBirth" required>
                     <label style="margin-top:-1rem;color: lightblue;">Date of Birth</label>
                 </div>
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Gender" required>
+                            <input type="text" id="Gender" required>
                             <label style="margin-top:-1rem;color: lightblue;">Gender</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="Bloodgroup" required>
+                            <input type="text" id="Bloodgroup" required>
                             <label style="margin-top:-1rem;color: lightblue;">Blood Grp</label>
                         </div>
                     </div>
@@ -102,13 +102,13 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="ParentPhoneNo" required>
+                            <input type="text" id="ParentPhoneNo" required>
                             <label style="margin-top:-1rem;color: lightblue;">Parent Phone No</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="ParentPhoneNo2" required>
+                            <input type="text" id="ParentPhoneNo2" required>
                             <label style="margin-top:-1rem;color: lightblue;">Parent Phone No2</label>
                         </div>
                     </div>
@@ -116,27 +116,27 @@
                 <div class="Card-line">
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="NIN" required>
+                            <input type="text" id="NIN" required>
                             <label style="margin-top:-1rem;color: lightblue;">NIN</label>
                         </div>
                     </div>
                     <div class="Card">
                         <div class="form-control">
-                            <input type="text" name="State" required>
+                            <input type="text" id="State" required>
                             <label style="margin-top:-1rem;color: lightblue;">State of Origin</label>
                         </div>
                     </div>
                 </div>
                 <div class="form-control">
-                    <input type="text" name="HometownCommunity" required>
+                    <input type="text" id="HometownCommunity" required>
                     <label style="margin-top:-1rem;color: lightblue;">Hometown/Community</label>
                 </div>
                 <div class="form-control">
-                    <input type="text" name="client" value="VEENATE COMMUNICATION VENTURES" readonly>
+                    <input type="text" id="client" value="VEENATE COMMUNICATION VENTURES" readonly>
                     <label style="margin-top:-1rem;color: lightblue;">CLIENT</label>
                 </div>
         </div>
-        <button class="btn" type="submit">SUBMIT</button>
+        <button class="btn" type="submit" id="insert">SUBMIT</button>
         </form>
     </div>
 </div>
@@ -156,12 +156,21 @@
 
         const db = getDatabase();
 
-        var enterID = document.querySelector("#enterID");
-        var enterName = document.querySelector("#enterName");
-        var enterAge = document.querySelector("#enterAge");
-        var findID = document.querySelector("#findID");
-        var findName = document.querySelector("#findName");
-        var findAge = document.querySelector("#findAge");
+        var School = document.querySelector("#School");
+        var YearofAdmin = document.querySelector("#YearofAdmin");
+        var Presentclass = document.querySelector("#Presentcladd");
+        var Surname = document.querySelector("#Surname");
+        var Name = document.querySelector("#Name");
+        var Mname = document.querySelector("#Mname");
+        var DateofBirth = document.querySelector("#DateofBirth");
+        var Gender = document.querySelector("#Gender");
+        var Bloodgroup = document.querySelector("#Bloodgroup");
+        var ParentPhoneNo = document.querySelector("#ParentPhoneNo");
+        var  ParentPhoneNo2 = document.querySelector("#ParentPhoneNo2");
+        var NIN = document.querySelector("#NIN");
+        var State = document.querySelector("#State");
+        var HometownCommunity = document.querySelector("#HometownCommunity");
+        var client = document.querySelector("#client");
       
 
         var insertBtn = document.querySelector("#insert");
@@ -171,9 +180,21 @@
 
         function InsertData() {
             set(ref(db, "People/"+ enterID.value),{
-                Name: enterName.value,
-                ID: enterID.value,
-                Age: enterAge.value
+        School : School.value,
+        YearofAdmin : YearofAdmin.value,
+        Presentclass : Presentclass.value,
+        Surname  : Surname.value,
+        Name : Name.value,
+        Mname = Mname.value,
+        DateofBirth : DateofBirth.value,
+        Gender : Gender.value,
+        Bloodgroup : Bloodgroup.value,
+        ParentPhoneNo : ParentPhoneNo.value,
+        ParentPhoneNo2 : ParentPhoneNo2.value,
+        NIN : NIN.value,
+        State : State.value,
+        HometownCommunity : HometownCommunity.value,
+        client : client.value,
             })
             .then(()=>{
                 alert("Data added successfully");
