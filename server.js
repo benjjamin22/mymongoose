@@ -217,7 +217,7 @@ app.post("/", upload.single('image'), async(req, res) => {
            // const uuid = ud
         
             
-        const uuid = nanoid(8);
+        const uuid = nanoid(10);
             
         let newNote = new Note({
             Aname: {
