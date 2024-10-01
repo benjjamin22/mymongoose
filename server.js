@@ -126,9 +126,9 @@ var NoteSchemer = new Schema({
     client: { type: String },
     State: { type: String, uppercase: true },
     sn: { type: Number },
-    pin: { type: String },
     time: { type: String, uppercase: true }
 });
+
 NoteSchemer.pre("save", function(next) {
     var docs = this;
     mongoose.model('Note', NoteSchemer).countDocuments()
