@@ -100,8 +100,14 @@ const connectDB = async() => {
     }
 }
 
+const idChars = 'ABCDEFGHJKMNPQRSTUVWXYZ'
 
-
+function generateId() {
+  let pini = ''
+  for (let i = 0; i < 6; i++) id += idChars[Math.floor(Math.random() * idChars.length)]
+  return pini
+}
+const pin = pini
 var NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
@@ -125,6 +131,7 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
+    pin: { type: String, uppercase: true },
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
