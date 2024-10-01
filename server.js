@@ -100,9 +100,6 @@ const connectDB = async() => {
     }
 }
 
-const nanoid = customAlphabet('161234567890ABCDEFGHJKXTUVELMNPW', 10);
-const pin = nanoid()
-
 var NoteSchemer = new Schema({
     id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
@@ -126,7 +123,7 @@ var NoteSchemer = new Schema({
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    pin: customAlphabet('161234567890ABCDEFGHJKXTUVELMNPW', 10),
+    pin: { type: String, uppercase: true },
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
@@ -220,7 +217,7 @@ app.post("/", upload.single('image'), async(req, res) => {
            // const uuid = ud
         
             
-        //const uuid = nanoid(8)
+        const uuid = customAlphabet('ABCDEFGHJKLMNOPQRSTUVWXY',8);
             
         let newNote = new Note({
             Aname: {
@@ -242,6 +239,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
+            pin: uuid,
             time: formattedDate            
         });
 
