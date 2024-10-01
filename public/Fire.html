@@ -17,8 +17,8 @@
     <div id="enterDetails">
         <h1>Enter details</h1>
                 
-                    <input type="text" id="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
-                    <label style="margin-top:-1rem;color: lightblue;">Present School</label>
+                    <input type="text" id="School" >
+                    <label style="margin-top:-1rem;color: lightblue;">Presen School</label>
                 </div>
         <h4>ID</h4> 
         <input id="enterID" type="text"> 
@@ -88,7 +88,7 @@ var School = document.querySelector("#School")
 
         function InsertData() {
             set(ref(db, "People/"+ enterID.value),{
-                School ; School.value,
+                School : School.value,
                 Name: enterName.value,
                 ID: enterID.value,
                 Age: enterAge.value
