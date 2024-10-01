@@ -16,10 +16,36 @@
 <body>
     <div id="enterDetails">
         <h1>Enter details</h1>
-                
-                    <input type="text" id="School" >
-                    <label style="margin-top:-1rem;color: lightblue;">Presen School</label>
+                    <input type="text" id="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">Present School</label>
                 </div>
+                <div class="Card-line">
+                    <div class="Card" style="margin-top:-.5rem;width: 10rem">
+                        <div class="form-control">
+                            <input type="text" id="YearofAdmin" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
+                        </div>
+                       <div class="form-control">
+                            <label style="margin-top:-1rem;color: lightblue;">Present class</label>
+                            <select  style="margin-top: 1.5rem;color: blue;width: 5rem; height: 1.5rem;"id="Presentclass" required >
+                                <option  selected></option>
+                                <option value="JSS1">JSS1</option>
+                                <option value="JSS2">JSS2</option>
+                                <option value="JSS3">JSS3</option>
+                                <option value="SSS1">SSS1</option>
+                                <option value="SSS2">SSS2</option>
+                                <option value="SS3">SSS3</option>
+                              </select>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" id="Surname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" id="Mname" required>
+                            <label style="margin-top:-1rem;color: lightblue;width: 100%;">Middle Name</label>
+                        </div>
+                    </div>    
         <h4>ID</h4> 
         <input id="enterID" type="text"> 
 
