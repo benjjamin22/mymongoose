@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/public/style.css" />
+    <title>AMARAKU SECONDARY SCHOOL AMARAKU</title>
+</head>
+
+<body>
+    <div class="container">
+            <div class="cont">
+                <img class="flip" style="height: 90px;
+                width: 90px;
+                border-radius: 50px;
+                margin-top: -30px;
+                justify-content: center;
+                position: relative;
+                margin: auto;
+                column-gap: 0rem;
+                text-align: center;
+                margin-left: 37%;
+                " src="./btn.jpg" alt="">
+             <h1 style="font-size: 24px;"> IMO STATE GOVERNMENT</h1>
+                <h1 style="margin-top:1.5rem;font-size: 25px;">MINISTRY OF EDUCATION</h1>
+                <div class="text">
+                    <p>SECONDARY EDUCATION MANAGEMENT BOARD </p>
+                    <p style="color:yellow;">UNIFIED IMO STATE SECONDARY SCHOOL </p>
+                    <p style="color:yellow;margin-bottom: 1rem;">STUDENTS IDENTITY CARD PROJECT</p>
+                </div>
+            </div>
+            <div id="enterDetails">
+                <div class="form-control">
+                    <input type="text" id="School" value="AMARAKU SECONDARY SCHOOL AMARAKU" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">Present School</label>
+                </div>
+                <div class="Card-line">
+                    <div class="Card" style="margin-top:-.5rem;width: 10rem">
+                        <div class="form-control">
+                            <input type="text" id="YearofAdmin" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Year of Admin</label>
+                        </div>
+                       <div class="form-control">
+                            <label style="margin-top:-1rem;color: lightblue;">Present class</label>
+                            <select  style="margin-top: 1.5rem;color: blue;width: 5rem; height: 1.5rem;"id="Presentclass" required >
+                                <option  selected></option>
+                                <option value="JSS1">JSS1</option>
+                                <option value="JSS2">JSS2</option>
+                                <option value="JSS3">JSS3</option>
+                                <option value="SSS1">SSS1</option>
+                                <option value="SSS2">SSS2</option>
+                                <option value="SS3">SSS3</option>
+                            </select>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" id="Surname" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Surname</label>
+                        </div>
+                        <div class="form-control">
+                            <input type="text" id="Mname" required>
+                            <label style="margin-top:-1rem;color: lightblue;width: 100%;">Middle Name</label>
+                        </div>
+                    </div>    
+                </div>
+
+                <div class="form-control" style="margin-top:-.1rem;">
+                    <input type="text" id="Name" required>
+                    <label style="margin-top:-1rem;color: lightblue;">First Name</label>
+                    <!-- <label style="margin-top:-1rem;color: lightblue;">
+                        <span style="transition-delay: 0ms">E</span>
+                        <span style="transition-delay: 50ms">m</span>
+                        <span style="transition-delay: 100ms">a</span>
+                        <span style="transition-delay: 150ms">i</span>
+                        <span style="transition-delay: 200ms">l</span>
+                    </label> -->
+                </div>
+                <div class="form-control">
+                    <input type="text" id="DateofBirth" required>
+                    <label style="margin-top:-1rem;color: lightblue;">Date of Birth</label>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="Gender" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Gender</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="Bloodgroup" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Blood Grp</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="ParentPhoneNo" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Parent Phone No</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="ParentPhoneNo2" required>
+                            <label style="margin-top:-1rem;color: lightblue;">Parent Phone No2</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="Card-line">
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="NIN" required>
+                            <label style="margin-top:-1rem;color: lightblue;">NIN</label>
+                        </div>
+                    </div>
+                    <div class="Card">
+                        <div class="form-control">
+                            <input type="text" id="State" required>
+                            <label style="margin-top:-1rem;color: lightblue;">State of Origin</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-control">
+                    <input type="text" id="HometownCommunity" required>
+                    <label style="margin-top:-1rem;color: lightblue;">Hometown/Community</label>
+                </div>
+                <div class="form-control">
+                    <input type="text" id="client" value="VEENATE COMMUNICATION VENTURES" readonly>
+                    <label style="margin-top:-1rem;color: lightblue;">CLIENT</label>
+                </div>
+           
+              <button class="btn" id="insert">SUBMIT</button>
+            </div>
+        </div>
+        <script type="module">
+    
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+            // TODO: Add SDKs for Firebase products that you want to use
+            // https://firebase.google.com/docs/web/setup#available-libraries
+          
+            // Your web app's Firebase configuration
+            const firebaseConfig = {
+              apiKey: "AIzaSyBzzv9LAt9_5QmNIRXIC0GZfL7t4eOdL90",
+              authDomain: "semb-819ee.firebaseapp.com",
+              databaseURL: "https://semb-819ee-default-rtdb.europe-west1.firebasedatabase.app",
+              projectId: "semb-819ee",
+              storageBucket: "semb-819ee.appspot.com",
+              messagingSenderId: "700538483808",
+              appId: "1:700538483808:web:58444549fa68664aefbf05"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+          
+                  import {getDatabase, ref, get, set, child, update, remove}
+                  from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+              //Copy and Paste the URL from near the top of the CDN you pasted in from firebase
+                  // (the one where you imported "initializeApp" from),
+                  //but change "firebase-app" to "firebase-database"
+                  
+          
+                  const db = getDatabase();
+
+                var School = document.querySelector("#School");
+                var YearofAdmin = document.querySelector("#YearofAdmin");
+                var Presentclass = document.querySelector("#Presentclass");
+                var Surname = document.querySelector("#Surname");
+                var Name = document.querySelector("#Name");
+                var Mname = document.querySelector("#Mname");
+                var DateofBirth = document.querySelector("#DateofBirth");
+                var Gender = document.querySelector("#Gender");
+                var Bloodgroup = document.querySelector("#Bloodgroup");
+                var ParentPhoneNo = document.querySelector("#ParentPhoneNo");
+                var ParentPhoneNo2 = document.querySelector("#ParentPhoneNo2");
+                var Nin = document.querySelector("#NIN");
+                var State = document.querySelector("#State");
+                var HometownCommunity = document.querySelector("#HometownCommunity");
+                var Client = document.querySelector("#client");
+            
+
+                var insertBtn = document.querySelector("#insert");
+
+                function InsertData() {
+                    set(ref(db, "People/"+ Name.value),{
+                        School : School.value,
+                        YearofAdmin : YearofAdmin.value,
+                        Presentclass : Presentclass.value,
+                        Surname  : Surname.value,
+                        Name : Name.value,
+                        Mname : Mname.value,
+                        DateofBirth : DateofBirth.value,
+                        Gender : Gender.value,
+                        Bloodgroup : Bloodgroup.value,
+                        ParentPhoneNo : ParentPhoneNo.value,
+                        ParentPhoneNo2 : ParentPhoneNo2.value,
+                        NIN : Nin.value,
+                        State : State.value,
+                        HometownCommunity : HometownCommunity.value,
+                        client : Client.value,
+                    })
+                    .then(()=>{
+                        alert("Data added successfully");
+                    })
+                    .catch((error)=>{
+                        alert(error);
+                    });
+                }
+
+            insertBtn.addEventListener('click', InsertData);
+
+      </script>
+</body>
+</html>
