@@ -184,7 +184,7 @@
                 var insertBtn = document.querySelector("#insert");
 
                 function InsertData() {
-                    set(ref(db, "People/"),{
+                    set(ref(db, "People/"+ Name.value),{
                         School : School.value,
                         YearofAdmin : YearofAdmin.value,
                         Presentclass : Presentclass.value,
