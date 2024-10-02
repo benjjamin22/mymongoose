@@ -216,7 +216,7 @@ app.post("/", upload.single('image'), async(req, res) => {
           //  }
            // const uuid = ud
        
-        const uuid = nanoid(10);
+        const uuuid = nanoid(10);
             
         let newNote = new Note({
             Aname: {
@@ -238,7 +238,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
             picturepath: imagePath,
-            pin: uuid,
+            pin: uuuid,
             time: formattedDate            
         });
 
