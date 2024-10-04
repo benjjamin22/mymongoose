@@ -124,7 +124,6 @@ var NoteSchemer = new Schema({
     client: { type: String },
     State: { type: String, uppercase: true },
     pin: { type: String, uppercase: true },
-    pass: { type: String, uppercase: true },
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
@@ -217,18 +216,18 @@ app.post("/", upload.single('image'), async(req, res) => {
           //  }
            // const uuid = ud
 
-        const hashID = size => {
-        const MASK = 0x3d
-        const LETTERS = 'abcdefghjkmnpqrstuvwxyz'
-        const NUMBERS = '23456789'
-        const charset = `${NUMBERS}${LETTERS.toUpperCase()}`.split('')
-        const bytes = new Uint8Array(size)
-        crypto.getRandomValues(bytes)
+       // const hashID = size => {
+       // const MASK = 0x3d
+       // const LETTERS = 'abcdefghjkmnpqrstuvwxyz'
+       // const NUMBERS = '23456789'
+       // const charset = `${NUMBERS}${LETTERS.toUpperCase()}`.split('')
+       // const bytes = new Uint8Array(size)
+      //  crypto.getRandomValues(bytes)
 
-        return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
-         }
+       // return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
+        // }
 
-        const passo = hashID(6)
+        //const passo = hashID(6)
         
         const uuid = nanoid(10);
             
@@ -253,7 +252,6 @@ app.post("/", upload.single('image'), async(req, res) => {
             client: req.body.client,
             picturepath: imagePath,
             pin: uuid,
-            pass: passo,
             time: formattedDate            
         });
 
@@ -261,7 +259,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
            <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">Name:${newNote.Aname.Name} ${newNote.Aname.Mname} ${newNote.Aname.Surname}</h1>
-           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your password:${newNote.pass}</h1>
+           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pass}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
