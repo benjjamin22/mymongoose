@@ -229,7 +229,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
          }
 
-        const passp = hashID(15)
+        const passo = hashID(15)
         
         const uuid = nanoid(10);
             
