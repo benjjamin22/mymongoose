@@ -221,8 +221,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         const MASK = 0x3d
         const LETTERS = 'abcdefghjkmnpqrstuvwxyz'
         const NUMBERS = '23456789'
-        const NUMBERSS = '23456789'
-        const charset = `${NUMBERS}${NUMBERSS}${LETTERS.toUpperCase()}`.split('')
+        const charset = `${NUMBERS}${LETTERS.toUpperCase()}`.split('')
         const bytes = new Uint8Array(size)
         crypto.getRandomValues(bytes)
 
