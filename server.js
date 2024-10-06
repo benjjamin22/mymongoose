@@ -233,7 +233,7 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // TEST: generate 6 digit number
         // first number can't be zero - so we generate it separatley
-        let sixDigitStr = (1+Math.random()*9|0) + gen(8)
+        let sixDigitStr = (1+Math.random()*9|0) + gen(9)
         let uuide = ( +(sixDigitStr) ) // + convert to num
         
         
