@@ -151,7 +151,7 @@ async function uploadImageToGoogleDrive(file) {
     const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         //name: uuid,
-        name: req.file.originalname
+        name: req.file.originalname,
         //name: file.originalname,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
@@ -165,7 +165,7 @@ async function uploadImageToGoogleDrive(file) {
         resource: fileMetadata,
         media: media,
         //fields: 'id,name'
-        fields: 'id, webContentLink'
+        fields: 'id, webContentLink',
     });
 
     return response.data.name
