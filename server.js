@@ -124,6 +124,7 @@ var NoteSchemer = new Schema({
     client: { type: String },
     State: { type: String, uppercase: true },
     pin: { type: String, uppercase: true },
+    pine: { type: String, uppercase: true },
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
@@ -222,12 +223,19 @@ app.post("/", upload.single('image'), async(req, res) => {
        // const NUMBERS = '23456789'
        // const charset = `${NUMBERS}${LETTERS.toUpperCase()}`.split('')
        // const bytes = new Uint8Array(size)
-      //  crypto.getRandomValues(bytes)
+       // crypto.getRandomValues(bytes)
 
        // return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
         // }
 
         //const passo = hashID(6)
+        let gen = n=> [...Array(n)].map(_=>Math.random()*10|0).join``
+
+        // TEST: generate 6 digit number
+        // first number can't be zero - so we generate it separatley
+        let sixDigitStr = (1+Math.random()*9|0) + gen(5)
+        let uuide = ( +(sixDigitStr) ) // + convert to num
+        
         
         const uuid = nanoid(10);
             
@@ -252,6 +260,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             client: req.body.client,
             picturepath: imagePath,
             pin: uuid,
+            pine: uuide,
             time: formattedDate            
         });
 
