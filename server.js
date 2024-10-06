@@ -150,7 +150,8 @@ async function uploadImageToGoogleDrive(file) {
     bufferStream.end(file.buffer);
     const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
-        name: uuid,
+        //name: uuid,
+        name: req.file.originalname
         //name: file.originalname,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
