@@ -150,8 +150,8 @@ async function uploadImageToGoogleDrive(file) {
     bufferStream.end(file.buffer);
     const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
-        //name: uuid,
-        name: req.file.originalname,
+        name: uuid,
+        //name: req.file.originalname,
         //name: file.originalname,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
@@ -164,8 +164,8 @@ async function uploadImageToGoogleDrive(file) {
     const response = await drive.files.create({
         resource: fileMetadata,
         media: media,
-        //fields: 'id,name'
-        fields: 'id, webContentLink',
+        fields: 'id,name'
+        //fields: 'id, webContentLink',
     });
 
     return response.data.name
@@ -194,9 +194,9 @@ app.get('/ASSA', async(req, res) => {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-       // const Pathoo = await uploadImageToGoogleDrive(req.file);
-        //const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
-        const imagePath = `https://drive.google.com/uc?id=${file.data.id}`;
+        const Pathoo = await uploadImageToGoogleDrive(req.file);
+        const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
+        //const imagePath = `https://drive.google.com/uc?id=${file.data.id}`;
         function pad(n) {
             return n < 10 ? '0' + n : n;
         }
