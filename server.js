@@ -124,7 +124,7 @@ var NoteSchemer = new Schema({
     client: { type: String },
     State: { type: String, uppercase: true },
     pin: { type: String, uppercase: true },
-  //  pine: { type: String, uppercase: true },
+    pine: { type: String, uppercase: true },
     sn: { type: Number },
     time: { type: String, uppercase: true }
 });
@@ -229,12 +229,12 @@ app.post("/", upload.single('image'), async(req, res) => {
         // }
 
         //const passo = hashID(6)
-       // let gen = n=> [...Array(n)].map(_=>Math.random()*10|0).join``
+       let gen = n=> [...Array(n)].map(_=>Math.random()*10|0).join``
 
         // TEST: generate 6 digit number
         // first number can't be zero - so we generate it separatley
-        //let sixDigitStr = (1+Math.random()*9|0) + gen(5)
-        //let uuide = ( +(sixDigitStr) ) // + convert to num
+        let sixDigitStr = (1+Math.random()*9|0) + gen(5)
+        let uuide = ( +(sixDigitStr) ) // + convert to num
         
         
         const uuid = nanoid(10);
@@ -260,7 +260,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             client: req.body.client,
             picturepath: imagePath,
             pin: uuid,
-            //pine: uuide,
+            pine: uuide,
             time: formattedDate            
         });
 
@@ -268,7 +268,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
            <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">Name:${newNote.Aname.Name} ${newNote.Aname.Mname} ${newNote.Aname.Surname}</h1>
-           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pass}</h1>
+           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pine}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
