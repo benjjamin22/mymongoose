@@ -107,7 +107,7 @@ var NoteSchemer = new Schema({
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
-    Dateofbirth: {
+    Ddateofbirth: {
         Day: { type: String, uppercase: true },
         Month: { type: String, uppercase: true },
         Year: { type: String, uppercase: true }
@@ -116,7 +116,7 @@ var NoteSchemer = new Schema({
     School: { type: String, uppercase: true },
     YearofAdmin: { type: String, uppercase: true },
     Presentclass: { type: String, uppercase: true },
-    //DateofBirth: { type: String, uppercase: true },
+    DateofBirth: { type: String, uppercase: true },
     Gender: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
@@ -125,7 +125,7 @@ var NoteSchemer = new Schema({
     ParentPhoneNo2: { type: String, uppercase: true },
     NIN: { type: String, uppercase: true, unique: true },
     HometownCommunity: { type: String, uppercase: true },
-    //picturepath: { type: String },
+    picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
     pin: { type: String, uppercase: true },
@@ -252,7 +252,7 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Mname: req.body.Mname,
                 Surname: req.body.Surname
             },
-            Dateofbirth: {
+            Ddateofbirth: {
                 Day: req.body.Day,
                 Month: req.body.Month,
                 Year: req.body.Year
@@ -270,7 +270,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client,
-            //picturepath: imagePath,
+            picturepath: imagePath,
             pin: uuid,
             pine: uuide,
             time: formattedDate            
