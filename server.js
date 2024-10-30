@@ -107,11 +107,16 @@ var NoteSchemer = new Schema({
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
     },
+    Dateofbirth: {
+        Day: { type: String, uppercase: true },
+        Month: { type: String, uppercase: true },
+        Year: { type: String, uppercase: true }
+    },
     Status: { type: String, uppercase: true },
     School: { type: String, uppercase: true },
     YearofAdmin: { type: String, uppercase: true },
     Presentclass: { type: String, uppercase: true },
-    DateofBirth: { type: String, uppercase: true },
+    //DateofBirth: { type: String, uppercase: true },
     Gender: { type: String, uppercase: true },
     Bloodgroup: { type: String, uppercase: true },
     RegNo: { type: String, uppercase: true },
@@ -246,6 +251,11 @@ app.post("/", upload.single('image'), async(req, res) => {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
                 Surname: req.body.Surname
+            },
+            Dateofbirth: {
+                Day: req.body.Day,
+                Month: req.body.Month,
+                Year: req.body.Year
             },
             School: req.body.School,
             Status: 'STUDENT',
