@@ -254,7 +254,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             },
             Ddateofbirth: {
                 Day: req.body.Day,
-                Month: req.body.Month,
+                Month: req.body.Month + ',',
                 Year: req.body.Year
             },
             School: req.body.School,
@@ -269,7 +269,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             ParentPhoneNo2: req.body.ParentPhoneNo2,
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
-            client: req.body.client,
+            client: req.body.client + '.jpg',
             picturepath: imagePath,
             pin: uuid,
             pine: uuide,
