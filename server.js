@@ -123,7 +123,7 @@ var NoteSchemer = new Schema({
     Bloodgroup: { type: String, uppercase: true },
     ParentPhoneNo: { type: String, uppercase: true },
     ParentPhoneNo2: { type: String, uppercase: true },
-    NIN: { type: String, uppercase: true, unique: true },
+    NIN: { type: String, uppercase: true, },
     HometownCommunity: { type: String, uppercase: true },
     picturepath: { type: String },
     client: { type: String },
