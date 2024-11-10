@@ -13,7 +13,9 @@ const multer = require('multer');
 const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
-const autoIncrement = require("mongoose-sequence")(mongoose);
+const { nanoid } = require("nanoid");
+//const autoIncrement = require("mongoose-sequence")(mongoose);
+
 
 
 //function keepServerAwaike() {
@@ -98,14 +100,17 @@ const connectDB = async() => {
     }
 }
 
-
-
-const NoteSchemer = new Schema({
-    field: { type: String, default: () => uuidv4(), required: true },
+var NoteSchemer = new Schema({
+    id: { type: String, default: () => uuidv4(), required: true },
     Aname: {
         Name: { type: String, uppercase: true },
         Mname: { type: String, uppercase: true },
         Surname: { type: String, uppercase: true }
+    },
+    Ddateofbirth: {
+        Day: { type: String, uppercase: true },
+        Month: { type: String, uppercase: true },
+        Year: { type: String, uppercase: true }
     },
     Status: { type: String, uppercase: true },
     School: { type: String, uppercase: true },
@@ -118,57 +123,26 @@ const NoteSchemer = new Schema({
     Bloodgroup: { type: String, uppercase: true },
     ParentPhoneNo: { type: String, uppercase: true },
     ParentPhoneNo2: { type: String, uppercase: true },
-    NIN: { type: String, uppercase: true, unique: true },
+    NIN: { type: String, uppercase: true, },
     HometownCommunity: { type: String, uppercase: true },
     picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
-    time: { type: String, uppercase: true },
-    
-    
-},
-{ id: false},
-);
+    pin: { type: String, uppercase: true },
+    pine: { type: String, uppercase: true },
+    sn: { type: Number },
+    time: { type: String, uppercase: true }
+});
 
-//NoteSchemer.pre('save', function(next) {
-
-//var doc = this;
-
-//Retrieve last value of caseStudyNo
-//mute.findOne({},{},{sort: { 'id' :-1}}, function(error, counter)   {
-//if documents are present in collection then it will increment caseStudyNo 
-// else it will create a new documents with default values 
- 
-    //if(counter){
-      //counter.id++;
-      //doc.id=counter.id;
-    //}
-   // next();
- //});
-//});
-// module.exports allows us to pass this to other files when it is called
-// create the model for users and expose it to our app
-//const CaseStudy = mongoose.model('CaseStudy', caseStudySchema);
-//module.exports = CaseStudy;
-
-//NoteSchemer.pre('save',function(next){
-   //var doc = this;
-    //if(this.isNew){
-        //mute.count().then(res=>{
-           //this.id=res;
-            //next()
-        //})
-    //} else {
-       //next();
-    //}
-//})
-NoteSchemer.plugin(autoIncrement, {inc_field:'id'});
-
-const mute = mongoose.model("mute", NoteSchemer);
-
-//mute.counterReset('id', (err) =>{
-  //console.log(err)
-//});
+NoteSchemer.pre("save", function(next) {
+    var docs = this;
+    mongoose.model('Note', NoteSchemer).countDocuments()
+        .then(function(counter) {
+            docs.sn = counter + 1;
+            next();
+        });
+});
+var Note = mongoose.model("Note", NoteSchemer);
 
 app.use('/public', express.static(__dirname + '/public'));
 
@@ -182,6 +156,7 @@ async function uploadImageToGoogleDrive(file) {
     const uuid = uuidv4() + '.jpg';
     const fileMetadata = {
         name: uuid,
+        //name: req.file.originalname,
         //name: file.originalname,
         parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
     };
@@ -195,6 +170,7 @@ async function uploadImageToGoogleDrive(file) {
         resource: fileMetadata,
         media: media,
         fields: 'id,name'
+        //fields: 'id, webContentLink',
     });
 
     return response.data.name
@@ -225,7 +201,7 @@ app.post("/", upload.single('image'), async(req, res) => {
     try {
         const Pathoo = await uploadImageToGoogleDrive(req.file);
         const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
-
+        //const imagePath = `https://drive.google.com/uc?id=${file.data.id}`;
         function pad(n) {
             return n < 10 ? '0' + n : n;
         }
@@ -241,13 +217,45 @@ app.post("/", upload.single('image'), async(req, res) => {
 
         // Format the date and time
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+       // let _id_counter = 0
+           // function uytd() {
+           //=const ud = (_id_counter++).toString(36) + nanoid(10)
+                //const uuido = nanoid(8) + ud
+          //  }
+           // const uuid = ud
 
+       // const hashID = size => {
+       // const MASK = 0x3d
+       // const LETTERS = 'abcdefghjkmnpqrstuvwxyz'
+       // const NUMBERS = '23456789'
+       // const charset = `${NUMBERS}${LETTERS.toUpperCase()}`.split('')
+       // const bytes = new Uint8Array(size)
+       // crypto.getRandomValues(bytes)
 
-        let newNote = new mute({
+       // return bytes.reduce((acc, byte) => `${acc}${charset[byte & MASK]}`, '')
+        // }
+
+        //const passo = hashID(6)
+       let gen = n=> [...Array(n)].map(_=>Math.random()*10|0).join``
+
+        // TEST: generate 6 digit number
+        // first number can't be zero - so we generate it separatley
+        let sixDigitStr = (1+Math.random()*9|0) + gen(9)
+        let uuide = ( +(sixDigitStr) ) // + convert to num
+        
+        
+        const uuid = nanoid(10);
+            
+        let newNote = new Note({
             Aname: {
                 Name: req.body.Name,
                 Mname: req.body.Mname,
                 Surname: req.body.Surname
+            },
+            Ddateofbirth: {
+                Day: req.body.Day,
+                Month: req.body.Month + ',',
+                Year: req.body.Year
             },
             School: req.body.School,
             Status: 'STUDENT',
@@ -261,15 +269,18 @@ app.post("/", upload.single('image'), async(req, res) => {
             ParentPhoneNo2: req.body.ParentPhoneNo2,
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
-            client: req.body.client,
+            client: req.body.client + '.jpg',
             picturepath: imagePath,
-            time: formattedDate,
-            
+            pin: uuid,
+            pine: uuide,
+            time: formattedDate            
         });
 
 
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
+           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">Name:${newNote.Aname.Name} ${newNote.Aname.Mname} ${newNote.Aname.Surname}</h1>
+           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pine}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
