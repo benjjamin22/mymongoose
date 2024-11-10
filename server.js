@@ -199,8 +199,6 @@ app.get('/ASSA', async(req, res) => {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
-        const Pathoo = await uploadImageToGoogleDrive(req.file);
-        const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
         //const imagePath = `https://drive.google.com/uc?id=${file.data.id}`;
         function pad(n) {
             return n < 10 ? '0' + n : n;
@@ -270,7 +268,6 @@ app.post("/", upload.single('image'), async(req, res) => {
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
             client: req.body.client + '.jpg',
-            picturepath: imagePath,
             pin: uuid,
             pine: uuide,
             time: formattedDate            
