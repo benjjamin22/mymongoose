@@ -9,6 +9,8 @@ const { v4: uuidv4 } = require('uuid');
 const cron = require('node-cron');
 const axios = require('axios');
 const { body } = require('express-validator');
+const multer = require('multer');
+const { google } = require('googleapis');
 const fs = require('fs');
 const stream = require("stream");
 const { nanoid } = require("nanoid");
@@ -44,6 +46,17 @@ const keepAlive = () => {
         })
 }
 
+const oauth2Client = new google.auth.OAuth2(
+    '299799989715-9j5t32aoriem1chgjkd1d91vleh9njni.apps.googleusercontent.com',
+    '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',
+    'https://developers.google.com/oauthplayground'
+);
+
+oauth2Client.setCredentials({ refresh_token: '1//04SleHQlO68aLCgYIARAAGAQSNwF-L9IrZKYFd3YWazjkliZA_Z3tO98_P1q76Eb-_zLAugY-fN2A6M0kHNABfJL9OEnrB90YC3c' });
+
+const drive = google.drive({ version: 'v3', auth: oauth2Client });
+
+
 //function keepServerAwaike() {
 //axios.get('https://mymongoose.onrender.com', (res) => {
 // console.log(`Status Code: ${res.statusCode}`);
@@ -65,6 +78,8 @@ console.log('Keep-alive script started.');
 const app = express()
 const PORT = process.env.PORT || 8000
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 //const uid = function Generateuniquid() { return ('0000' + (Math.random() * (100000 - 101) + 101) | 0).slice(-5); }
 
@@ -110,6 +125,7 @@ var NoteSchemer = new Schema({
     ParentPhoneNo2: { type: String, uppercase: true },
     NIN: { type: String, uppercase: true, },
     HometownCommunity: { type: String, uppercase: true },
+    picturepath: { type: String },
     client: { type: String },
     State: { type: String, uppercase: true },
     pin: { type: String, uppercase: true },
@@ -134,6 +150,32 @@ app.get(["/", "/index.html"], (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 
+async function uploadImageToGoogleDrive(file) {
+    const bufferStream = new stream.PassThrough();
+    bufferStream.end(file.buffer);
+    const uuid = uuidv4() + '.jpg';
+    const fileMetadata = {
+        name: uuid,
+        //name: req.file.originalname,
+        //name: file.originalname,
+        parents: ["10KpoRo-jHT62ko_7BNH9khxA2S_6GY42"],
+    };
+
+    const media = {
+        mimeType: file.mimetype,
+        body: bufferStream
+    };
+
+    const response = await drive.files.create({
+        resource: fileMetadata,
+        media: media,
+        fields: 'id,name'
+        //fields: 'id, webContentLink',
+    });
+
+    return response.data.name
+}
+
 app.get('/detail', async(req, res) => {
     try {
         const data = await Note.find();
@@ -157,6 +199,8 @@ app.get('/ASSA', async(req, res) => {
 
 app.post("/", upload.single('image'), async(req, res) => {
     try {
+        const Pathoo = await uploadImageToGoogleDrive(req.file);
+        const imagePath = 'https://benjjamin22.github.io/filter/utilitie/nuasa/nuasa1/' + Pathoo;
         //const imagePath = `https://drive.google.com/uc?id=${file.data.id}`;
         function pad(n) {
             return n < 10 ? '0' + n : n;
@@ -225,7 +269,8 @@ app.post("/", upload.single('image'), async(req, res) => {
             ParentPhoneNo2: req.body.ParentPhoneNo2,
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
-            client: 'ISEC/ADSSO/' + req.body.client + '.jpg',
+            client: req.body.client + '.jpg',
+            picturepath: imagePath,
             pin: uuid,
             pine: uuide,
             time: formattedDate            
