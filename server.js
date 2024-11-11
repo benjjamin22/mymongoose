@@ -277,7 +277,7 @@ app.post("/", upload.single('image'), async(req, res) => {
         await newNote.save();
         res.send(`<!DOCTYPE html><html><body><h1 style="font-size:6rem; margin-top:8rem;text-align: center;">SUCCESSFUL</h1>
            <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">Name:${newNote.Aname.Name} ${newNote.Aname.Mname} ${newNote.Aname.Surname}</h1>
-           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pine}</h1>
+           <h1 style="font-size:3rem; margin-top:0rem;text-align: center;">this your pin:${newNote.pine} sn:${newNote.sn}</h1>
    </html>`)
     } catch (error) {
         res.status(500).send('Error saving data');
