@@ -267,7 +267,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             ParentPhoneNo2: req.body.ParentPhoneNo2,
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
-            client: 'https://benjjamin22.github.io/filter/utilitie/ISEC/ADSSO/'+ req.body.client + '.jpg',
+            client: 'https://benjjamin22.github.io/filter/utilitie/ISEC/OCSS/'+ req.body.client + '.jpg',
             pin: uuid,
             pine: uuide,
             time: formattedDate            
