@@ -267,7 +267,7 @@ app.post("/", upload.single('image'), async(req, res) => {
             ParentPhoneNo2: req.body.ParentPhoneNo2,
             NIN: req.body.NIN,
             HometownCommunity: req.body.HometownCommunity,
-            client: 'ISEC/USSU/' + req.body.client + '.jpg',
+            client: 'ISEC/GSSA/' + req.body.client + '.jpg',
             pin: uuid,
             pine: uuide,
             time: formattedDate            
